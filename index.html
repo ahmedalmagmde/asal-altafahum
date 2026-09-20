@@ -4,121 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>معرض اصل التفاهم - تجربة فاخرة في عالم السيارات</title>
-    <!-- تم إضافة خط Cairo لدعم اللغة العربية بشكل جميل -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- خطوط جوجل العصرية -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         :root {
             --primary-gold: #d4af37;
-            --dark-bg: #0f0f0f;
-            --darker-bg: #1a1a1a;
-            --accent-gold: #c9a962;
-            --light-text: #f5f5f5;
-            --muted-gold: #9b8b4c;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            --accent-gold: #f3e5ab;
+            --dark-bg: #09090b;
+            --card-bg: rgba(25, 25, 28, 0.6);
+            --text-light: #f8f9fa;
+            --text-gray: #adb5bd;
         }
 
         body {
-            /* تعديل الخط الأساسي ليكون Cairo */
-            font-family: 'Cairo', 'Lora', serif;
-            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1a2e 100%);
-            color: var(--light-text);
-            line-height: 1.8;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
         }
 
-        body::before {
-            content: '';
+        /* خلفية متحركة وعصرية */
+        .bg-glow {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
-            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vh;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05), transparent 60%);
             z-index: -1;
+            pointer-events: none;
         }
 
-        /* Navigation */
+        /* شريط التنقل */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 15, 15, 0.98);
-            backdrop-filter: blur(20px);
-            padding: 25px 50px;
-            z-index: 1000;
-            border-bottom: 2px solid var(--primary-gold);
+            padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.1);
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            z-index: 1000;
             transition: all 0.3s ease;
-        }
-
-        nav:hover {
-            padding: 20px 50px;
-            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.15);
         }
 
         .logo {
-            font-family: 'Cairo', 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 700;
+            font-size: 28px;
+            font-weight: 900;
             color: var(--primary-gold);
-            letter-spacing: 1px;
-            text-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .logo:hover {
-            text-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-            transform: scale(1.05);
+            text-decoration: none;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
         }
 
         .nav-links {
             display: flex;
-            gap: 50px;
+            gap: 30px;
             list-style: none;
         }
 
         .nav-links a {
-            color: var(--light-text);
+            color: var(--text-light);
             text-decoration: none;
-            transition: all 0.3s;
             font-weight: 600;
             font-size: 16px;
-            letter-spacing: 1px;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-gold);
-            transition: width 0.3s ease;
+            transition: color 0.3s;
         }
 
         .nav-links a:hover {
             color: var(--primary-gold);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
         }
 
         .menu-toggle {
@@ -128,602 +94,352 @@
             color: var(--primary-gold);
             font-size: 28px;
             cursor: pointer;
-            transition: transform 0.3s;
         }
 
-        .menu-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        .nav-links.active {
-            display: flex !important;
-        }
-
-        /* Hero Section */
+        /* القسم الرئيسي (Hero) */
         .hero {
-            position: relative;
             height: 100vh;
-            overflow: hidden;
-            margin-top: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
         }
 
-        .video-container {
+        .hero-video {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .video-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(15, 15, 15, 0.5), rgba(212, 175, 55, 0.15));
-            z-index: 2;
-        }
-
-        .video-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 70% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
-            z-index: 2;
-        }
-
-        .video-container video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
-            filter: brightness(0.7) contrast(1.1);
+            opacity: 0.3;
+            z-index: -1;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            text-align: center; /* تم تعديل المحاذاة للمنتصف */
-            padding: 60px 80px;
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            animation: fadeInUp 1.5s ease;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--dark-bg));
+            z-index: -1;
         }
 
         .hero-content h1 {
-            font-family: 'Cairo', serif;
-            font-size: 80px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
+            font-size: 4rem;
+            font-weight: 900;
             color: var(--primary-gold);
-            text-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-            line-height: 1.2;
+            margin-bottom: 20px;
+            animation: slideDown 1s ease forwards;
+            opacity: 0;
+            transform: translateY(-50px);
         }
 
         .hero-content p {
-            font-family: 'Cairo', serif;
-            font-size: 28px;
-            color: var(--light-text);
-            margin-bottom: 50px;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
-            font-weight: 600;
-            letter-spacing: 1px;
+            font-size: 1.5rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            animation: slideUp 1s ease 0.3s forwards;
+            opacity: 0;
+            transform: translateY(50px);
         }
 
-        .cta-button {
-            padding: 20px 60px;
-            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--accent-gold) 100%);
-            color: var(--dark-bg);
+        .btn-main {
+            padding: 15px 40px;
+            background: linear-gradient(45deg, var(--primary-gold), #b8962e);
+            color: #000;
             border: none;
-            border-radius: 60px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            letter-spacing: 1px;
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.4);
-            font-family: 'Cairo', serif;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 30px 70px rgba(212, 175, 55, 0.6);
-            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--primary-gold) 100%);
-        }
-
-        .cta-button:active {
-            transform: translateY(-2px);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Main Content */
-        .container {
-            max-width: 1500px;
-            margin: 0 auto;
-            padding: 0 50px;
-        }
-
-        /* Section Titles */
-        .section-title {
-            font-family: 'Cairo', serif;
-            font-size: 56px;
-            text-align: right;
-            margin: 100px 0 80px 0;
-            color: var(--primary-gold);
-            letter-spacing: 1px;
-            position: relative;
-            padding-bottom: 30px;
+            border-radius: 30px;
+            font-size: 1.2rem;
             font-weight: 800;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease 0.6s forwards;
+            opacity: 0;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-main:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        /* قسم السيارات و الحاويات العامة */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-gold);
+            margin-bottom: 60px;
+            position: relative;
         }
 
         .section-title::after {
             content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 200px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-gold), rgba(212, 175, 55, 0.3), transparent);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-gold);
+            margin: 15px auto 0;
+            border-radius: 2px;
         }
 
-        /* Cars Grid */
+        /* شبكة الـ 12 سيارة */
         .cars-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 50px;
-            margin-bottom: 100px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
+        /* تأثير الزجاج لبطاقات السيارات */
         .car-card {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.02));
-            border: 2px solid rgba(212, 175, 55, 0.2);
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.1);
             border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
+            padding: 20px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        .car-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 2;
-            pointer-events: none;
+        .car-card.reveal {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .car-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: rgba(212, 175, 55, 0.5);
-            box-shadow: 0 40px 80px rgba(212, 175, 55, 0.2);
-        }
-
-        .car-card:hover::before {
-            opacity: 1;
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.1);
         }
 
         .car-image-wrapper {
             position: relative;
-            height: 300px;
+            border-radius: 15px;
             overflow: hidden;
+            height: 220px;
+            margin-bottom: 20px;
         }
 
         .car-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.5s ease;
         }
 
         .car-card:hover .car-image {
-            transform: scale(1.15);
-            filter: brightness(1.2);
+            transform: scale(1.1);
         }
 
         .car-badge {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
-            color: var(--dark-bg);
-            padding: 12px 25px;
-            border-radius: 30px;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--primary-gold);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
             font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 1px;
-            font-family: 'Cairo', sans-serif;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-            z-index: 5;
-        }
-
-        .car-info {
-            padding: 40px;
+            border: 1px solid var(--primary-gold);
+            backdrop-filter: blur(5px);
         }
 
         .car-year {
-            color: var(--primary-gold);
-            font-size: 16px;
-            letter-spacing: 1px;
-            font-weight: 700;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
         }
 
         .car-title {
-            font-family: 'Cairo', serif;
-            font-size: 28px;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin: 15px 0;
-            color: var(--light-text);
-            letter-spacing: 1px;
-        }
-
-        .car-description {
-            color: rgba(245, 245, 245, 0.8);
-            font-size: 15px;
-            line-height: 1.8;
             margin-bottom: 20px;
+            color: var(--text-light);
         }
 
         .button-group {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 10px;
         }
 
-        .btn {
+        .btn-card {
             flex: 1;
-            padding: 14px 20px;
+            padding: 10px;
+            border-radius: 10px;
             border: none;
-            border-radius: 12px;
+            font-family: 'Cairo', sans-serif;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 15px;
-            font-family: 'Cairo', sans-serif;
-            border: 2px solid transparent;
+            font-size: 1rem;
         }
 
         .btn-whatsapp {
-            background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
-            color: var(--dark-bg);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            background: rgba(37, 211, 102, 0.1);
+            color: #25d366;
+            border: 1px solid rgba(37, 211, 102, 0.3);
         }
 
         .btn-whatsapp:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5);
+            background: #25d366;
+            color: #fff;
         }
 
         .btn-inquiry {
-            background: rgba(212, 175, 55, 0.15);
+            background: transparent;
             color: var(--primary-gold);
-            border: 2px solid var(--primary-gold);
+            border: 1px solid var(--primary-gold);
         }
 
         .btn-inquiry:hover {
-            background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
-            color: var(--dark-bg);
-            transform: translateY(-3px);
+            background: var(--primary-gold);
+            color: #000;
         }
 
-        /* Contact Section */
-        .contact-section {
-            margin: 100px 0;
-            padding: 60px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.03));
-            border: 2px solid rgba(212, 175, 55, 0.2);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .contact-section h2 {
-            font-family: 'Cairo', serif;
-            font-size: 48px;
-            text-align: right;
-            margin-bottom: 50px;
-            color: var(--primary-gold);
-            font-weight: 800;
-        }
-
-        .contact-grid {
+        /* قسم معلومات التواصل والموقع */
+        .contact-info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
+            gap: 30px;
+            margin-bottom: 50px;
         }
 
-        .contact-item {
-            text-align: right;
+        .contact-box {
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 20px;
             padding: 30px;
-            background: rgba(212, 175, 55, 0.05);
-            border-radius: 15px;
-            border: 1px solid rgba(212, 175, 55, 0.15);
+            text-align: center;
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        .contact-item:hover {
-            background: rgba(212, 175, 55, 0.1);
-            border-color: rgba(212, 175, 55, 0.3);
+        .contact-box.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-box:hover {
             transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
         }
 
-        .contact-item h3 {
-            font-family: 'Cairo', serif;
-            font-size: 22px;
+        .contact-box h3 {
             color: var(--primary-gold);
             margin-bottom: 15px;
-            font-weight: 700;
+            font-size: 1.5rem;
         }
 
-        .contact-item p {
-            color: rgba(245, 245, 245, 0.85);
+        .contact-box p {
+            color: var(--text-gray);
             line-height: 1.8;
-            font-size: 16px;
+            font-size: 1.1rem;
         }
 
-        /* Inquiry Form */
-        .inquiry-form {
-            background: rgba(26, 26, 26, 0.6);
+        /* قسم نموذج الاستفسار */
+        .contact-form-section {
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 30px;
             padding: 50px;
-            border-radius: 20px;
-            border: 2px solid rgba(212, 175, 55, 0.2);
             backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        .inquiry-form h3 {
-            font-family: 'Cairo', serif;
-            font-size: 36px;
-            text-align: right;
-            color: var(--primary-gold);
-            margin-bottom: 40px;
-            font-weight: 800;
+        .contact-form-section.reveal {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .form-group {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .form-group label {
             display: block;
-            text-align: right;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: var(--primary-gold);
-            font-weight: 700;
-            font-size: 16px;
+            font-weight: 600;
         }
 
-        .form-group input,
-        .form-group textarea {
+        .form-group input, .form-group textarea {
             width: 100%;
-            padding: 15px 20px;
-            background: rgba(212, 175, 55, 0.05);
-            border: 2px solid rgba(212, 175, 55, 0.2);
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            color: var(--light-text);
-            font-family: 'Cairo', serif;
-            font-size: 15px;
-            direction: rtl;
-            text-align: right;
-            transition: all 0.3s ease;
+            color: #fff;
+            font-family: 'Cairo', sans-serif;
+            transition: border-color 0.3s;
         }
 
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(245, 245, 245, 0.4);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group input:focus, .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-gold);
-            background: rgba(212, 175, 55, 0.1);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
 
-        .submit-btn {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
-            color: var(--dark-bg);
-            border: none;
-            border-radius: 12px;
-            font-family: 'Cairo', serif;
-            font-size: 18px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 25px 60px rgba(212, 175, 55, 0.5);
-            background: linear-gradient(135deg, var(--accent-gold), var(--primary-gold));
-        }
-
-        .submit-btn:active {
-            transform: translateY(-1px);
-        }
-
-        /* Footer */
         footer {
             text-align: center;
-            padding: 40px;
-            background: linear-gradient(135deg, rgba(15, 15, 15, 0.9), rgba(26, 26, 26, 0.9));
-            border-top: 2px solid rgba(212, 175, 55, 0.2);
-            color: rgba(245, 245, 245, 0.7);
-            font-size: 15px;
-            backdrop-filter: blur(10px);
-            font-family: 'Cairo', sans-serif;
+            padding: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: var(--text-gray);
         }
 
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
-            color: var(--dark-bg);
-            border: none;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
+        /* حركات الأنميشن */
+        @keyframes slideDown { to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { to { opacity: 1; } }
 
-        .scroll-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.5);
-        }
-
-        /* Responsive Design */
+        /* تصميم الجوال */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 25px;
-            }
-
-            nav {
-                padding: 15px 25px;
-            }
-
-            .logo {
-                font-size: 24px;
-            }
-
+            nav { padding: 15px 20px; }
+            .menu-toggle { display: block; }
             .nav-links {
                 display: none;
+                flex-direction: column;
                 position: absolute;
                 top: 70px;
                 right: 0;
-                left: 0;
-                flex-direction: column;
-                gap: 20px;
-                background: rgba(15, 15, 15, 0.98);
-                padding: 30px;
-                text-align: right;
-                border-bottom: 2px solid rgba(212, 175, 55, 0.2);
-                z-index: 999;
+                width: 100%;
+                background: rgba(9, 9, 11, 0.98);
+                border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+                padding: 20px 0;
+                text-align: center;
             }
-
-            .menu-toggle {
-                display: block;
+            .nav-links.active {
+                display: flex;
             }
-
-            .hero {
-                margin-top: 70px;
-                height: 70vh;
-            }
-
-            .hero-content {
-                padding: 30px;
-            }
-
-            .hero-content h1 {
-                font-size: 48px;
-            }
-
-            .hero-content p {
-                font-size: 18px;
-            }
-
-            .section-title {
-                font-size: 36px;
-                margin: 60px 0 40px 0;
-            }
-
-            .cars-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .contact-section {
-                padding: 30px;
-            }
-
-            .inquiry-form {
-                padding: 30px;
-            }
-
-            .scroll-top {
-                width: 45px;
-                height: 45px;
-                bottom: 20px;
-                left: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 36px;
-            }
-
-            .hero-content p {
-                font-size: 16px;
-                margin-bottom: 30px;
-            }
-
-            .cta-button {
-                padding: 15px 40px;
-                font-size: 14px;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { font-size: 1.1rem; }
+            .contact-form-section { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+
+    <div class="bg-glow"></div>
+
+    <!-- شريط التنقل مع الروابط المسترجعة -->
     <nav>
         <button class="menu-toggle" id="menuToggle">☰</button>
-        <div class="logo">معرض اصل التفاهم</div>
+        <a href="#" class="logo">معرض اصل التفاهم</a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#cars" onclick="closeMenu()">السيارات</a></li>
             <li><a href="#contact" onclick="closeMenu()">التواصل</a></li>
@@ -731,191 +447,255 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
     <div class="hero">
-        <div class="video-container">
-            <video autoplay muted loop playsinline>
+        <video class="hero-video" autoplay muted loop playsinline>
             <source src="./video.mp4" type="video/mp4">
-            </video>
-        </div>
+        </video>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>معرض اصل التفاهم</h1>
             <p>تجربة شراء السيارات من نوع آخر</p>
-            <button class="cta-button" onclick="document.getElementById('cars').scrollIntoView({behavior: 'smooth'})">اكتشف الآن</button>
+            <button class="btn-main" onclick="document.getElementById('cars').scrollIntoView()">اكتشف الآن</button>
         </div>
     </div>
 
-    <!-- Cars Section -->
-    <div class="container">
-        <h2 class="section-title" id="cars">السيارات المتاحة</h2>
-
-        <!-- تم تصحيح حاوية الشبكة هنا لجمع كل السيارات داخلها دون انقطاع -->
+    <div class="container" id="cars">
+        <h2 class="section-title reveal-element">السيارات المتاحة</h2>
+        
         <div class="cars-grid">
-            
-            <!-- Car 1 -->
-            <div class="car-card">
+            <!-- 1 -->
+            <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
                     <img class="car-image" src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&q=80" alt="تويوتا كامري">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
-                    <div class="car-year">2024</div>
+                    <div class="car-year">موديل 2024</div>
                     <div class="car-title">تويوتا كامري</div>
-                    <div class="car-description">
-                    </div>
                     <div class="button-group">
-                        <button class="btn btn-whatsapp" onclick="openWhatsApp('تويوتا كامري 2024 ')">💬 تواصل</button>
-                        <button class="btn btn-inquiry" onclick="scrollToInquiry()">استفسر</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('تويوتا كامري 2024')">تواصل</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا كامري')">استفسار</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Car 2 -->
-            <div class="car-card">
+            <!-- 2 -->
+            <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
                     <img class="car-image" src="https://images.unsplash.com/photo-1592550473065-71bc4f541b49?w=600&q=80" alt="نيسان ألتيما">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
-                    <div class="car-year">2023</div>
+                    <div class="car-year">موديل 2023</div>
                     <div class="car-title">نيسان ألتيما</div>
-                    <div class="car-description">
-                    </div>
                     <div class="button-group">
-                        <button class="btn btn-whatsapp" onclick="openWhatsApp('نيسان ألتيما 2023 ')">💬 تواصل</button>
-                        <button class="btn btn-inquiry" onclick="scrollToInquiry()">استفسر</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('نيسان ألتيما 2023')">تواصل</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('نيسان ألتيما')">استفسار</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Car 3 -->
-            <div class="car-card">
+            <!-- 3 -->
+            <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="https://images.unsplash.com/photo-1557223556-51c4d440fcb3?w=600&q=80" alt="هيونداي سوناتا">
+                    <img class="car-image" src="https://images.unsplash.com/photo-1557223556-51c4d440fcb3?w=600&q=80" alt="سوناتا فل كامل">
+                    <span class="car-badge">جديد</span>
+                </div>
+                <div class="car-info">
+                    <div class="car-year">موديل 2024</div>
+                    <div class="car-title">سوناتا (فل كامل)</div>
+                    <div class="button-group">
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هيونداي سوناتا فل كامل 2024')">تواصل</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سوناتا فل كامل')">استفسار</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 4 -->
+            <div class="car-card reveal-element">
+                <div class="car-image-wrapper">
+                    <img class="car-image" src="https://images.unsplash.com/photo-1557223556-51c4d440fcb3?w=600&q=80" alt="سوناتا نص فل">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
-                    <div class="car-year">2024</div>
-                    <div class="car-title">هيونداي سوناتا</div>
-                    <div class="car-description">
-                    </div>
+                    <div class="car-year">موديل 2024</div>
+                    <div class="car-title">سوناتا (نص فل)</div>
                     <div class="button-group">
-                        <button class="btn btn-whatsapp" onclick="openWhatsApp('هيونداي سوناتا 2024 ')">💬 تواصل</button>
-                        <button class="btn btn-inquiry" onclick="scrollToInquiry()">استفسر</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هيونداي سوناتا نص فل 2024')">تواصل</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سوناتا نص فل')">استفسار</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Car 4 -->
-            <div class="car-card">
+            <!-- 5 -->
+            <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="https://images.unsplash.com/photo-1557223556-51c4d440fcb3?w=600&q=80" alt="هيونداي سوناتا">
+                    <img class="car-image" src="https://images.unsplash.com/photo-1557223556-51c4d440fcb3?w=600&q=80" alt="سوناتا سمارت">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
-                    <div class="car-year">2024</div>
-                    <div class="car-title">هيونداي سوناتا</div>
-                    <div class="car-description">
-                    </div>
+                    <div class="car-year">موديل 2024</div>
+                    <div class="car-title">سوناتا (سمارت)</div>
                     <div class="button-group">
-                        <button class="btn btn-whatsapp" onclick="openWhatsApp('هيونداي سوناتا 2024 ')">💬 تواصل</button>
-                        <button class="btn btn-inquiry" onclick="scrollToInquiry()">استفسر</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هيونداي سوناتا سمارت 2024')">تواصل</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سوناتا سمارت')">استفسار</button>
                     </div>
                 </div>
             </div>
-            
-            <!-- Car 5 -->
-            <div class="car-card">
+            <!-- 6 -->
+            <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="https://images.unsplash.com/photo-1557223556-51c4d440fcb3?w=600&q=80" alt="هيونداي سوناتا">
+                    <img class="car-image" src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&q=80" alt="سيارة 6">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
-                    <div class="car-year">2024</div>
-                    <div class="car-title">هيونداي سوناتا</div>
-                    <div class="car-description">
-                    </div>
+                    <div class="car-year">موديل 2024</div>
+                    <div class="car-title">سيارة 6</div>
                     <div class="button-group">
-                        <button class="btn btn-whatsapp" onclick="openWhatsApp('هيونداي سوناتا 2024 ')">💬 تواصل</button>
-                        <button class="btn btn-inquiry" onclick="scrollToInquiry()">استفسر</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 6')">تواصل</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 6')">استفسار</button>
                     </div>
                 </div>
             </div>
-            
-            <!-- Car 6 -->
-            <div class="car-card">
+            <!-- 7 -->
+            <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="https://images.unsplash.com/photo-1557223556-51c4d440fcb3?w=600&q=80" alt="هيونداي سوناتا">
+                    <img class="car-image" src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&q=80" alt="سيارة 7">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
-                    <div class="car-year">2024</div>
-                    <div class="car-title">هيونداي سوناتا</div>
-                    <div class="car-description">
-                    </div>
+                    <div class="car-year">موديل 2024</div>
+                    <div class="car-title">سيارة 7</div>
                     <div class="button-group">
-                        <button class="btn btn-whatsapp" onclick="openWhatsApp('هيونداي سوناتا 2024 ')">💬 تواصل</button>
-                        <button class="btn btn-inquiry" onclick="scrollToInquiry()">استفسر</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 7')">تواصل</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 7')">استفسار</button>
                     </div>
                 </div>
             </div>
-
-        </div> <!-- هنا فقط تم إغلاق حاوية cars-grid لضمان بقاء جميع السيارات داخلها -->
-
-        <!-- Contact Section -->
-        <div class="contact-section" id="contact">
-            <h2>تواصل معنا</h2>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <h3>📱 الهاتف</h3>
-                    <p>0558346440<br>0532316096</p>
+            <!-- 8 -->
+            <div class="car-card reveal-element">
+                <div class="car-image-wrapper">
+                    <img class="car-image" src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&q=80" alt="سيارة 8">
+                    <span class="car-badge">مستعمل</span>
                 </div>
-                <div class="contact-item">
-                    <h3>📍 الموقع</h3>
-                    <p>محايل عسير<br>طريق خميس البحر</p>
-                </div>
-                <div class="contact-item">
-                    <h3>🕐 ساعات العمل</h3>
-                    <p>من 8 صباحاً إلى 10 مساءً<br>يومياً بلا انقطاع</p>
+                <div class="car-info">
+                    <div class="car-year">موديل 2024</div>
+                    <div class="car-title">سيارة 8</div>
+                    <div class="button-group">
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 8')">تواصل</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 8')">استفسار</button>
+                    </div>
                 </div>
             </div>
-
-            <!-- Inquiry Form -->
-            <div class="inquiry-form" id="inquiry">
-                <h3>استفسر عن السيارة</h3>
-                <form onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <label for="name">الاسم الكامل</label>
-                        <input type="text" id="name" name="name" placeholder="أدخل اسمك الكامل" required>
+            <!-- 9 -->
+            <div class="car-card reveal-element">
+                <div class="car-image-wrapper">
+                    <img class="car-image" src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&q=80" alt="سيارة 9">
+                    <span class="car-badge">مستعمل</span>
+                </div>
+                <div class="car-info">
+                    <div class="car-year">موديل 2024</div>
+                    <div class="car-title">سيارة 9</div>
+                    <div class="button-group">
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 9')">تواصل</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 9')">استفسار</button>
                     </div>
-                    <div class="form-group">
-                        <label for="carModel">نوع السيارة المهتم بها</label>
-                        <input type="text" id="carModel" name="carModel" placeholder="مثلاً: تويوتا كامري" required>
+                </div>
+            </div>
+            <!-- 10 -->
+            <div class="car-card reveal-element">
+                <div class="car-image-wrapper">
+                    <img class="car-image" src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&q=80" alt="سيارة 10">
+                    <span class="car-badge">مستعمل</span>
+                </div>
+                <div class="car-info">
+                    <div class="car-year">موديل 2024</div>
+                    <div class="car-title">سيارة 10</div>
+                    <div class="button-group">
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 10')">تواصل</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 10')">استفسار</button>
                     </div>
-                    <div class="form-group">
-                        <label for="phone">رقم الهاتف</label>
-                        <input type="tel" id="phone" name="phone" placeholder="أدخل رقم هاتفك" pattern="[0-9]{9,}" required>
+                </div>
+            </div>
+            <!-- 11 -->
+            <div class="car-card reveal-element">
+                <div class="car-image-wrapper">
+                    <img class="car-image" src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&q=80" alt="سيارة 11">
+                    <span class="car-badge">مستعمل</span>
+                </div>
+                <div class="car-info">
+                    <div class="car-year">موديل 2024</div>
+                    <div class="car-title">سيارة 11</div>
+                    <div class="button-group">
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 11')">تواصل</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 11')">استفسار</button>
                     </div>
-                    <div class="form-group">
-                        <label for="message">رسالتك / استفسارك</label>
-                        <textarea id="message" name="message" rows="5" placeholder="أكتب استفسارك هنا..." required></textarea>
+                </div>
+            </div>
+            <!-- 12 -->
+            <div class="car-card reveal-element">
+                <div class="car-image-wrapper">
+                    <img class="car-image" src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&q=80" alt="سيارة 12">
+                    <span class="car-badge">مستعمل</span>
+                </div>
+                <div class="car-info">
+                    <div class="car-year">موديل 2024</div>
+                    <div class="car-title">سيارة 12</div>
+                    <div class="button-group">
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 12')">تواصل</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 12')">استفسار</button>
                     </div>
-                    <button type="submit" class="submit-btn">إرسال الاستفسار</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- قسم التواصل بالكامل (تم إرجاع الموقع وأوقات الدوام) -->
+    <div class="container" id="contact" style="padding-top: 50px;">
+        <h2 class="section-title reveal-element">تواصل معنا</h2>
+        
+        <div class="contact-info-grid">
+            <div class="contact-box reveal-element">
+                <h3>📱 الهاتف</h3>
+                <p>0558346440<br>0532316096</p>
+            </div>
+            <div class="contact-box reveal-element">
+                <h3>📍 الموقع</h3>
+                <p>محايل عسير<br>طريق خميس البحر</p>
+            </div>
+            <div class="contact-box reveal-element">
+                <h3>🕐 ساعات العمل</h3>
+                <p>من 8 صباحاً إلى 10 مساءً<br>يومياً بلا انقطاع</p>
+            </div>
+        </div>
+
+        <!-- قسم الاستفسار -->
+        <div class="contact-form-section reveal-element" id="inquiry">
+            <h3 style="text-align: center; color: var(--primary-gold); margin-bottom: 30px; font-size: 2rem;">استفسر عن السيارة</h3>
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" id="name" required placeholder="أدخل اسمك الكريم">
+                </div>
+                <div class="form-group">
+                    <label>نوع السيارة</label>
+                    <input type="text" id="carModel" required placeholder="مثال: تويوتا كامري">
+                </div>
+                <div class="form-group">
+                    <label>رقم الجوال</label>
+                    <input type="tel" id="phone" required placeholder="05xxxxxxxx">
+                </div>
+                <div class="form-group">
+                    <label>الرسالة / الاستفسار</label>
+                    <textarea id="message" rows="4" required placeholder="اكتب استفسارك هنا..."></textarea>
+                </div>
+                <button type="submit" class="btn-main" style="width: 100%; margin-top: 10px;">إرسال الطلب</button>
+            </form>
+        </div>
+    </div>
+
     <footer>
-        <p>© 2026 معرض اصل التفاهم - جميع الحقوق محفوظة </p>
+        <p>© 2026 معرض اصل التفاهم. جميع الحقوق محفوظة.</p>
     </footer>
 
-    <!-- Scroll to Top Button -->
-    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
-
     <script>
-        // Mobile Menu Toggle
+        // تشغيل قائمة الجوال
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
 
@@ -926,55 +706,55 @@
         }
 
         function closeMenu() {
-            navLinks.classList.remove('active');
+            if(window.innerWidth <= 768) {
+                navLinks.classList.remove('active');
+            }
         }
 
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('nav')) {
-                closeMenu();
-            }
+        // أنميشن ظهور العناصر عند النزول في الصفحة
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-element').forEach(el => {
+            observer.observe(el);
         });
 
-        // Show scroll to top button
-        window.addEventListener('scroll', () => {
-            const scrollTop = document.getElementById('scrollTop');
-            if (window.pageYOffset > 300) {
-                scrollTop.classList.add('show');
-            } else {
-                scrollTop.classList.remove('show');
-            }
-        });
-
+        // دوال الواتساب ونموذج الاتصال
         function openWhatsApp(carInfo) {
             const phoneNumber = '966558346440';
-            const message = `مرحباً، أريد الاستفسار عن: ${carInfo}`;
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
-            window.open(whatsappURL, '_blank');
+            const msg = encodeURIComponent(`مرحباً، أريد الاستفسار عن سيارة: ${carInfo}`);
+            window.open(`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${msg}`, '_blank');
         }
 
-        function scrollToInquiry() {
-            document.getElementById('inquiry').scrollIntoView({ behavior: 'smooth' });
-            setTimeout(() => document.getElementById('name').focus(), 500);
+        function scrollToInquiry(carName = '') {
+            const inquirySection = document.getElementById('inquiry');
+            inquirySection.scrollIntoView({ behavior: 'smooth' });
+            if(carName) {
+                document.getElementById('carModel').value = carName;
+            }
+            setTimeout(() => document.getElementById('name').focus(), 800);
         }
 
         function handleSubmit(event) {
             event.preventDefault();
-            
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
             const carModel = document.getElementById('carModel').value;
             const message = document.getElementById('message').value;
             
-            const fullMessage = `مرحباً من معرض اصل التفاهم\n\n👤 الاسم: ${name}\n📱 الهاتف: ${phone}\n🚗 السيارة: ${carModel}\n\n💬 الرسالة:\n${message}`;
-            const encodedMessage = encodeURIComponent(fullMessage);
-            const phoneNumber = '966531316096';
-            const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
-            
-            window.open(whatsappURL, '_blank');
-            
-            // Reset form
+            const msg = encodeURIComponent(`طلب استفسار جديد:\nالاسم: ${name}\nالجوال: ${phone}\nالسيارة: ${carModel}\nالرسالة: ${message}`);
+            window.open(`https://api.whatsapp.com/send?phone=966532316096&text=${msg}`, '_blank');
             event.target.reset();
         }
     </script>
