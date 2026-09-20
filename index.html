@@ -59,7 +59,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
             border-bottom: 1px solid var(--border-color);
@@ -75,7 +75,7 @@
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 900;
             color: var(--primary-blue);
             text-decoration: none;
@@ -126,18 +126,6 @@
             z-index: 1100;
         }
 
-        .overlay-bg {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1050;
-            backdrop-filter: blur(4px);
-        }
-
         .hero {
             height: 100vh;
             display: flex;
@@ -186,6 +174,9 @@
             font-weight: 900;
             color: var(--text-dark);
             margin-bottom: 15px;
+            animation: slideDown 1s ease forwards;
+            opacity: 0;
+            transform: translateY(-30px);
         }
 
         .hero-content h1 span {
@@ -196,6 +187,9 @@
             font-size: clamp(1rem, 2vw, 1.4rem);
             color: var(--text-gray);
             margin-bottom: 40px;
+            animation: slideUp 1s ease 0.3s forwards;
+            opacity: 0;
+            transform: translateY(30px);
             font-weight: 600;
         }
 
@@ -210,12 +204,15 @@
             font-family: 'Cairo', sans-serif;
             cursor: pointer;
             transition: all 0.3s ease;
+            animation: fadeIn 1s ease 0.6s forwards;
+            opacity: 0;
             box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
         }
 
         .btn-main:hover {
             transform: scale(1.03) translateY(-3px);
             background: var(--primary-blue-dark);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.5);
         }
 
         .container {
@@ -249,6 +246,18 @@
             gap: 40px;
         }
 
+        /* فئات الانميشن للظهور عند التمرير */
+        .car-card, .contact-box, .contact-form-section, .reveal-element {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .car-card.reveal, .contact-box.reveal, .contact-form-section.reveal, .reveal-element.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .car-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -259,6 +268,12 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+        }
+
+        .car-card:hover {
+            transform: translateY(-12px);
+            border-color: rgba(37, 99, 235, 0.4);
+            box-shadow: var(--shadow-hover);
         }
 
         .car-image-wrapper {
@@ -274,6 +289,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .car-card:hover .car-image {
+            transform: scale(1.08);
         }
 
         .car-badge {
@@ -320,17 +340,31 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            transition: all 0.3s ease;
         }
 
         .btn-whatsapp {
             background: #25d366;
             color: #fff;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+        }
+
+        .btn-whatsapp:hover {
+            background: #20bd5a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
         }
 
         .btn-inquiry {
             background: rgba(37, 99, 235, 0.1);
             color: var(--primary-blue-dark);
             border: 1px solid rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-inquiry:hover {
+            background: var(--primary-blue);
+            color: #fff;
+            transform: translateY(-2px);
         }
 
         .contact-info-grid {
@@ -347,6 +381,12 @@
             padding: 40px 30px;
             text-align: center;
             box-shadow: var(--shadow-soft);
+        }
+
+        .contact-box:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-blue);
+            box-shadow: var(--shadow-hover);
         }
 
         .contact-box h3 {
@@ -400,6 +440,14 @@
             border-radius: 16px;
             font-family: 'Cairo', sans-serif;
             font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
         }
 
         footer {
@@ -411,7 +459,10 @@
             font-weight: 600;
         }
 
-        /* تعديل القائمة الجانبية لتفتح من جهة اليمين بشكل صحيح ومناسب للغة العربية */
+        @keyframes slideDown { to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { to { opacity: 1; } }
+
         @media (max-width: 992px) {
             nav {
                 padding: 12px 20px;
@@ -422,35 +473,41 @@
             }
 
             .logo {
-                font-size: 19px;
+                font-size: 18px;
             }
 
             .nav-links {
-                position: fixed;
-                top: 0;
-                right: -280px; /* مخفية تماماً خارج الشاشة من جهة اليمين */
-                width: 270px;
-                height: 100vh;
-                background: var(--white);
+                display: none;
                 flex-direction: column;
-                padding: 80px 25px 30px;
-                box-shadow: 10px 0 30px rgba(0,0,0,0.15);
-                transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-                z-index: 1080;
-                gap: 20px;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 100%;
+                background: #ffffff;
+                border-bottom: 1px solid var(--border-color);
+                padding: 15px 0;
+                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
                 text-align: right;
+                z-index: 1080;
             }
 
             .nav-links.active {
-                right: 0; /* تنزلق من اليمين لتظهر بداخل الشاشة عند النقر */
+                display: flex;
+            }
+
+            .nav-links li {
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
             }
 
             .nav-links a {
-                font-size: 18px;
-                color: var(--text-dark);
-                padding: 10px 0;
-                border-bottom: 1px solid rgba(0,0,0,0.05);
                 display: block;
+                padding: 15px 25px;
+                font-size: 17px;
+                color: var(--text-dark);
             }
 
             .nav-links a::after {
@@ -462,7 +519,6 @@
 <body>
 
     <div class="bg-glow"></div>
-    <div class="overlay-bg" id="overlayBg" onclick="closeMenu()"></div>
 
     <nav>
         <div class="logo-container">
@@ -490,7 +546,7 @@
     </div>
 
     <div class="container" id="cars">
-        <h2 class="section-title">السيارات المتاحة</h2>
+        <h2 class="section-title reveal-element">السيارات المتاحة</h2>
         
         <div class="cars-grid">
             <!-- 1 -->
@@ -701,7 +757,7 @@
     </div>
 
     <div class="container" id="contact" style="padding-top: 30px;">
-        <h2 class="section-title">تواصل معنا</h2>
+        <h2 class="section-title reveal-element">تواصل معنا</h2>
         
         <div class="contact-info-grid">
             <div class="contact-box">
@@ -714,7 +770,7 @@
             </div>
             <div class="contact-box">
                 <h3><span>🕐</span> ساعات العمل</h3>
-                <p>من 8 صباحاً إلى 10 مساءً<br>يومياً</p>
+                <p>من 7 صباحاً إلى 8 مساءً<br>يومياً</p>
             </div>
         </div>
 
@@ -747,33 +803,59 @@
     </footer>
 
     <script>
-        // العودة لأول الصفحة تلقائياً عند التحديث
-        window.onbeforeunload = function () {
+        // منع حفظ مكان التمرير والعودة لأول الصفحة فوراً عند التحديث
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        window.addEventListener('beforeunload', function () {
             window.scrollTo(0, 0);
-        };
-        window.onload = function () {
+        });
+
+        window.addEventListener('load', function () {
             window.scrollTo(0, 0);
+        });
+
+        // تفعيل انميشن الظهور عند التمرير (Scroll Reveal)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
         };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.car-card, .contact-box, .contact-form-section, .reveal-element').forEach(el => {
+            observer.observe(el);
+        });
 
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
-        const overlayBg = document.getElementById('overlayBg');
 
         if (menuToggle) {
-            menuToggle.addEventListener('click', () => {
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
                 navLinks.classList.toggle('active');
-                if(overlayBg) {
-                    overlayBg.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
-                }
             });
         }
+
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 992) {
+                if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                }
+            }
+        });
 
         function closeMenu() {
             if(window.innerWidth <= 992) {
                 navLinks.classList.remove('active');
-                if(overlayBg) {
-                    overlayBg.style.display = 'none';
-                }
             }
         }
 
