@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معرض اصل التفاهم </title>
-    <!-- خطوط جوجل العصرية -->
+    <title>معرض أصل التفاهم | للسيارات</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -15,76 +15,99 @@
         }
 
         :root {
-            --primary-gold: #d4af37;
-            --accent-gold: #f3e5ab;
-            --dark-bg: #09090b;
-            --card-bg: rgba(25, 25, 28, 0.6);
-            --text-light: #f8f9fa;
-            --text-gray: #adb5bd;
+            /* لوحة الألوان الفاتحة والفخمة */
+            --primary-gold: #c5a059;
+            --primary-gold-dark: #a4813f;
+            --light-bg: #f4f6f9;
+            --white: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --text-dark: #2d3436;
+            --text-gray: #636e72;
+            --border-color: rgba(197, 160, 89, 0.15);
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 20px 40px rgba(197, 160, 89, 0.12);
+            --glass-blur: blur(16px);
         }
 
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-light);
+            background-color: var(--light-bg);
+            color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* خلفية متحركة وعصرية */
         .bg-glow {
             position: fixed;
-            top: 50%;
-            left: 50%;
+            top: 0;
+            left: 0;
             width: 100vw;
             height: 100vh;
-            transform: translate(-50%, -50%);
-            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05), transparent 60%);
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(197, 160, 89, 0.05), transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(0, 86, 179, 0.03), transparent 50%);
             z-index: -1;
             pointer-events: none;
         }
 
-        /* شريط التنقل */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 50px;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(9, 9, 11, 0.8);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--border-color);
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
 
         .logo {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 900;
             color: var(--primary-gold);
             text-decoration: none;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 35px;
             list-style: none;
         }
 
         .nav-links a {
-            color: var(--text-light);
+            color: var(--text-dark);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 16px;
             transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gold);
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
             color: var(--primary-gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .menu-toggle {
@@ -96,7 +119,6 @@
             cursor: pointer;
         }
 
-        /* القسم الرئيسي (Hero) */
         .hero {
             height: 100vh;
             display: flex;
@@ -105,6 +127,7 @@
             text-align: center;
             position: relative;
             padding: 0 20px;
+            overflow: hidden;
         }
 
         .hero-video {
@@ -114,8 +137,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.3;
-            z-index: -1;
+            z-index: -2;
         }
 
         .hero-overlay {
@@ -124,35 +146,51 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, transparent, var(--dark-bg));
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(244,246,249,0.7) 100%);
+            backdrop-filter: blur(5px);
             z-index: -1;
         }
 
+        .hero-content {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 50px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-soft);
+        }
+
         .hero-content h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 900;
-            color: var(--primary-gold);
-            margin-bottom: 20px;
+            color: var(--text-dark);
+            margin-bottom: 15px;
             animation: slideDown 1s ease forwards;
             opacity: 0;
-            transform: translateY(-50px);
+            transform: translateY(-30px);
+        }
+
+        .hero-content h1 span {
+            color: var(--primary-gold);
         }
 
         .hero-content p {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--text-gray);
             margin-bottom: 40px;
             animation: slideUp 1s ease 0.3s forwards;
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(30px);
+            font-weight: 600;
         }
 
         .btn-main {
-            padding: 15px 40px;
-            background: linear-gradient(45deg, var(--primary-gold), #b8962e);
-            color: #000;
+            padding: 16px 45px;
+            background: var(--primary-gold);
+            color: #fff;
             border: none;
-            border-radius: 30px;
+            border-radius: 50px;
             font-size: 1.2rem;
             font-weight: 800;
             font-family: 'Cairo', sans-serif;
@@ -160,15 +198,15 @@
             transition: all 0.3s ease;
             animation: fadeIn 1s ease 0.6s forwards;
             opacity: 0;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 25px rgba(197, 160, 89, 0.4);
         }
 
         .btn-main:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+            transform: scale(1.03) translateY(-3px);
+            background: var(--primary-gold-dark);
+            box-shadow: 0 15px 35px rgba(197, 160, 89, 0.5);
         }
 
-        /* قسم السيارات و الحاويات العامة */
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -177,41 +215,40 @@
 
         .section-title {
             text-align: center;
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary-gold);
-            margin-bottom: 60px;
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 70px;
             position: relative;
         }
 
         .section-title::after {
             content: '';
             display: block;
-            width: 80px;
+            width: 60px;
             height: 4px;
             background: var(--primary-gold);
             margin: 15px auto 0;
-            border-radius: 2px;
+            border-radius: 4px;
         }
 
-        /* شبكة الـ 12 سيارة */
         .cars-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
         }
 
-        /* تأثير الزجاج لبطاقات السيارات */
         .car-card {
             background: var(--card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
             padding: 20px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
+            box-shadow: var(--shadow-soft);
         }
 
         .car-card.reveal {
@@ -220,114 +257,126 @@
         }
 
         .car-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(212, 175, 55, 0.4);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.1);
+            transform: translateY(-12px);
+            border-color: rgba(197, 160, 89, 0.4);
+            box-shadow: var(--shadow-hover);
         }
 
         .car-image-wrapper {
             position: relative;
-            border-radius: 15px;
+            border-radius: 18px;
             overflow: hidden;
-            height: 220px;
-            margin-bottom: 20px;
+            height: 240px;
+            margin-bottom: 25px;
+            background: #fff;
         }
 
         .car-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
 
         .car-card:hover .car-image {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
 
         .car-badge {
             position: absolute;
             top: 15px;
             right: 15px;
-            background: rgba(0, 0, 0, 0.7);
-            color: var(--primary-gold);
-            padding: 5px 15px;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-gold-dark);
+            padding: 6px 16px;
+            border-radius: 30px;
             font-size: 0.9rem;
-            font-weight: 700;
-            border: 1px solid var(--primary-gold);
+            font-weight: 800;
+            border: 1px solid rgba(197, 160, 89, 0.3);
             backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .car-info {
+            padding: 0 10px;
         }
 
         .car-year {
             color: var(--text-gray);
-            font-size: 0.9rem;
-            margin-bottom: 5px;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
         .car-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--text-light);
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--text-dark);
         }
 
         .button-group {
             display: flex;
-            gap: 10px;
+            gap: 15px;
         }
 
         .btn-card {
             flex: 1;
-            padding: 10px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 14px;
             border: none;
             font-family: 'Cairo', sans-serif;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .btn-whatsapp {
-            background: rgba(37, 211, 102, 0.1);
-            color: #25d366;
-            border: 1px solid rgba(37, 211, 102, 0.3);
+            background: #25d366;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
         }
 
         .btn-whatsapp:hover {
-            background: #25d366;
-            color: #fff;
+            background: #20bd5a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
         }
 
         .btn-inquiry {
-            background: transparent;
-            color: var(--primary-gold);
-            border: 1px solid var(--primary-gold);
+            background: rgba(197, 160, 89, 0.1);
+            color: var(--primary-gold-dark);
+            border: 1px solid rgba(197, 160, 89, 0.3);
         }
 
         .btn-inquiry:hover {
             background: var(--primary-gold);
-            color: #000;
+            color: #fff;
+            transform: translateY(-2px);
         }
 
-        /* قسم معلومات التواصل والموقع */
         .contact-info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .contact-box {
-            background: var(--card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 20px;
-            padding: 30px;
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px 30px;
             text-align: center;
-            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
             opacity: 0;
             transform: translateY(30px);
+            box-shadow: var(--shadow-soft);
         }
 
         .contact-box.reveal {
@@ -336,31 +385,43 @@
         }
 
         .contact-box:hover {
-            transform: translateY(-5px);
-            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-8px);
+            border-color: var(--primary-gold);
+            box-shadow: var(--shadow-hover);
         }
 
         .contact-box h3 {
-            color: var(--primary-gold);
+            color: var(--text-dark);
             margin-bottom: 15px;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-box h3 span {
+            font-size: 2rem;
+            color: var(--primary-gold);
         }
 
         .contact-box p {
             color: var(--text-gray);
             line-height: 1.8;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            font-weight: 600;
         }
 
-        /* قسم نموذج الاستفسار */
         .contact-form-section {
-            background: var(--card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.1);
+            background: var(--white);
+            border: 1px solid var(--border-color);
             border-radius: 30px;
-            padding: 50px;
-            backdrop-filter: blur(10px);
+            padding: 60px;
             opacity: 0;
             transform: translateY(30px);
+            box-shadow: var(--shadow-soft);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .contact-form-section.reveal {
@@ -374,40 +435,46 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 10px;
-            color: var(--primary-gold);
-            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 1.1rem;
         }
 
         .form-group input, .form-group textarea {
             width: 100%;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            color: #fff;
+            padding: 16px;
+            background: var(--light-bg);
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 16px;
+            color: var(--text-dark);
             font-family: 'Cairo', sans-serif;
-            transition: border-color 0.3s;
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
 
         .form-group input:focus, .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-gold);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.1);
         }
 
         footer {
             text-align: center;
-            padding: 30px;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 40px;
+            border-top: 1px solid var(--border-color);
             color: var(--text-gray);
+            background: var(--white);
+            font-weight: 600;
         }
 
-        /* حركات الأنميشن */
+        /* Animations */
         @keyframes slideDown { to { opacity: 1; transform: translateY(0); } }
         @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { to { opacity: 1; } }
 
-        /* تصميم الجوال */
+        /* Responsive Design */
         @media (max-width: 768px) {
             nav { padding: 15px 20px; }
             .menu-toggle { display: block; }
@@ -418,17 +485,19 @@
                 top: 70px;
                 right: 0;
                 width: 100%;
-                background: rgba(9, 9, 11, 0.98);
-                border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+                background: rgba(255, 255, 255, 0.98);
+                border-bottom: 1px solid var(--border-color);
                 padding: 20px 0;
                 text-align: center;
+                box-shadow: var(--shadow-soft);
             }
             .nav-links.active {
                 display: flex;
             }
-            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content { padding: 30px 20px; border-radius: 20px; margin: 0 15px; }
+            .hero-content h1 { font-size: 2.8rem; }
             .hero-content p { font-size: 1.1rem; }
-            .contact-form-section { padding: 30px 20px; }
+            .contact-form-section { padding: 40px 20px; }
         }
     </style>
 </head>
@@ -436,27 +505,27 @@
 
     <div class="bg-glow"></div>
 
-    <!-- شريط التنقل مع الروابط المسترجعة -->
     <nav>
         <button class="menu-toggle" id="menuToggle">☰</button>
-        <a href="#" class="logo">معرض اصل التفاهم</a>
+        <a href="#" class="logo">أصل التفاهم</a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#" onclick="closeMenu()">الرئيسية</a></li>
-            <li><a href="#cars" onclick="closeMenu()">السيارات</a></li>
-            <li><a href="#contact" onclick="closeMenu()">التواصل</a></li>
-            <li><a href="#inquiry" onclick="closeMenu()">الاستفسار</a></li>
+            <li><a href="#cars" onclick="closeMenu()">السيارات المتاحة</a></li>
+            <li><a href="#contact" onclick="closeMenu()">معلومات التواصل</a></li>
+            <li><a href="#inquiry" onclick="closeMenu()">نموذج الاستفسار</a></li>
         </ul>
     </nav>
 
     <div class="hero">
+        <!-- استخدمنا مصدر فيديو بديل كمثال يسهل تشغيله، يمكنك إبقاء رابط الفيديو الخاص بك "./video.mp4" -->
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="./video.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>معرض اصل التفاهم</h1>
-            <p>تجربة شراء السيارات من نوع آخر</p>
-            <button class="btn-main" onclick="document.getElementById('cars').scrollIntoView()">اكتشف الآن</button>
+            <h1>معرض <span>أصل التفاهم</span></h1>
+            <p>ارتقِ بتجربة القيادة.. تشكيلة فاخرة من أفضل السيارات المتاحة</p>
+            <button class="btn-main" onclick="document.getElementById('cars').scrollIntoView()">استعرض السيارات</button>
         </div>
     </div>
 
@@ -467,208 +536,207 @@
             <!-- 1 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR1.jpg" alt="تويوتا كامري">
+                    <!-- Placeholder Fallback Image in case CAR1.jpg doesn't exist -->
+                    <img class="car-image" src="CAR1.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Toyota+Camry'" alt="تويوتا كامري">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
                     <div class="car-year">موديل 2024</div>
                     <div class="car-title">تويوتا كامري</div>
                     <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('تويوتا كامري 2024')">تواصل</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا كامري')">استفسار</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('تويوتا كامري 2024')">تواصل 💬</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا كامري')">استفسار 📝</button>
                     </div>
                 </div>
             </div>
             <!-- 2 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR2.jpg" alt="نيسان التيما">
+                    <img class="car-image" src="CAR2.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Nissan+Altima'" alt="نيسان التيما">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
                     <div class="car-year">موديل 2023</div>
                     <div class="car-title">نيسان ألتيما</div>
                     <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('نيسان ألتيما 2023')">تواصل</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('نيسان ألتيما')">استفسار</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('نيسان ألتيما 2023')">تواصل 💬</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('نيسان ألتيما')">استفسار 📝</button>
                     </div>
                 </div>
             </div>
             <!-- 3 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR3.jpg" alt="سوناتا فل كامل">
+                    <img class="car-image" src="CAR3.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Sonata+Full'" alt="سوناتا فل كامل">
                     <span class="car-badge">جديد</span>
                 </div>
                 <div class="car-info">
                     <div class="car-year">موديل 2024</div>
                     <div class="car-title">سوناتا (فل كامل)</div>
                     <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هيونداي سوناتا فل كامل 2024')">تواصل</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سوناتا فل كامل')">استفسار</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هيونداي سوناتا فل كامل 2024')">تواصل 💬</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سوناتا فل كامل')">استفسار 📝</button>
                     </div>
                 </div>
             </div>
             <!-- 4 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR4.jpg" alt="سوناتا نص فل">
+                    <img class="car-image" src="CAR4.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Sonata+Mid'" alt="سوناتا نص فل">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
                     <div class="car-year">موديل 2024</div>
                     <div class="car-title">سوناتا (نص فل)</div>
                     <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هيونداي سوناتا نص فل 2024')">تواصل</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سوناتا نص فل')">استفسار</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هيونداي سوناتا نص فل 2024')">تواصل 💬</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سوناتا نص فل')">استفسار 📝</button>
                     </div>
                 </div>
             </div>
             <!-- 5 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR5.jpg" alt="سوناتا سمارت">
+                    <img class="car-image" src="CAR5.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Sonata+Smart'" alt="سوناتا سمارت">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
                     <div class="car-year">موديل 2024</div>
                     <div class="car-title">سوناتا (سمارت)</div>
                     <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هيونداي سوناتا سمارت 2024')">تواصل</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سوناتا سمارت')">استفسار</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هيونداي سوناتا سمارت 2024')">تواصل 💬</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سوناتا سمارت')">استفسار 📝</button>
                     </div>
                 </div>
             </div>
             <!-- 6 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR6.jpg" alt="سيارة 6">
+                    <img class="car-image" src="CAR6.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Car+6'" alt="سيارة 6">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
                     <div class="car-year">موديل 2024</div>
                     <div class="car-title">سيارة 6</div>
                     <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 6')">تواصل</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 6')">استفسار</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 6')">تواصل 💬</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 6')">استفسار 📝</button>
                     </div>
                 </div>
             </div>
             <!-- 7 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR7.jpg" alt="سيارة 7">
+                    <img class="car-image" src="CAR7.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Car+7'" alt="سيارة 7">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
                     <div class="car-year">موديل 2024</div>
                     <div class="car-title">سيارة 7</div>
                     <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 7')">تواصل</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 7')">استفسار</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 7')">تواصل 💬</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 7')">استفسار 📝</button>
                     </div>
                 </div>
             </div>
             <!-- 8 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR8.jpg" alt="سيارة 8">
+                    <img class="car-image" src="CAR8.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Car+8'" alt="سيارة 8">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
                     <div class="car-year">موديل 2024</div>
                     <div class="car-title">سيارة 8</div>
                     <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 8')">تواصل</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 8')">استفسار</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 8')">تواصل 💬</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 8')">استفسار 📝</button>
                     </div>
                 </div>
             </div>
             <!-- 9 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR9.jpg" alt="سيارة 9">
+                    <img class="car-image" src="CAR9.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Car+9'" alt="سيارة 9">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
                     <div class="car-year">موديل 2024</div>
                     <div class="car-title">سيارة 9</div>
                     <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 9')">تواصل</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 9')">استفسار</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 9')">تواصل 💬</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 9')">استفسار 📝</button>
                     </div>
                 </div>
             </div>
             <!-- 10 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR10.jpg" alt="سيارة 10">
+                    <img class="car-image" src="CAR10.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Car+10'" alt="سيارة 10">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
                     <div class="car-year">موديل 2024</div>
                     <div class="car-title">سيارة 10</div>
                     <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 10')">تواصل</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 10')">استفسار</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 10')">تواصل 💬</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 10')">استفسار 📝</button>
                     </div>
                 </div>
             </div>
             <!-- 11 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR11.jpg" alt="سيارة 11">
+                    <img class="car-image" src="CAR11.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Car+11'" alt="سيارة 11">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
                     <div class="car-year">موديل 2024</div>
                     <div class="car-title">سيارة 11</div>
                     <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 11')">تواصل</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 11')">استفسار</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 11')">تواصل 💬</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 11')">استفسار 📝</button>
                     </div>
                 </div>
             </div>
             <!-- 12 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR12.jpg" alt="سيارة 12">
+                    <img class="car-image" src="CAR12.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Car+12'" alt="سيارة 12">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
                     <div class="car-year">موديل 2024</div>
                     <div class="car-title">سيارة 12</div>
                     <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 12')">تواصل</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 12')">استفسار</button>
+                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 12')">تواصل 💬</button>
+                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 12')">استفسار 📝</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- قسم التواصل بالكامل (تم إرجاع الموقع وأوقات الدوام) -->
     <div class="container" id="contact" style="padding-top: 50px;">
         <h2 class="section-title reveal-element">تواصل معنا</h2>
         
         <div class="contact-info-grid">
             <div class="contact-box reveal-element">
-                <h3>📱 الهاتف</h3>
+                <h3><span>📱</span> الهاتف</h3>
                 <p>0558346440<br>0531316096</p>
             </div>
             <div class="contact-box reveal-element">
-                <h3>📍 الموقع</h3>
+                <h3><span>📍</span> الموقع</h3>
                 <p>محايل عسير<br>طريق خميس البحر</p>
             </div>
             <div class="contact-box reveal-element">
-                <h3>🕐 ساعات العمل</h3>
+                <h3><span>🕐</span> ساعات العمل</h3>
                 <p>من 8 صباحاً إلى 10 مساءً<br>يومياً</p>
             </div>
         </div>
 
-        <!-- قسم الاستفسار -->
         <div class="contact-form-section reveal-element" id="inquiry">
-            <h3 style="text-align: center; color: var(--primary-gold); margin-bottom: 30px; font-size: 2rem;">استفسر عن السيارة</h3>
+            <h3 style="text-align: center; color: var(--text-dark); margin-bottom: 40px; font-size: 2.2rem; font-weight: 800;">استفسر عن السيارة</h3>
             <form onsubmit="handleSubmit(event)">
                 <div class="form-group">
                     <label>الاسم الكامل</label>
@@ -684,19 +752,19 @@
                 </div>
                 <div class="form-group">
                     <label>الرسالة / الاستفسار</label>
-                    <textarea id="message" rows="4" required placeholder="اكتب استفسارك هنا..."></textarea>
+                    <textarea id="message" rows="5" required placeholder="اكتب استفسارك هنا وسنقوم بالرد عليك في أقرب وقت..."></textarea>
                 </div>
-                <button type="submit" class="btn-main" style="width: 100%; margin-top: 10px;">إرسال الطلب</button>
+                <button type="submit" class="btn-main" style="width: 100%; margin-top: 15px; border-radius: 16px;">إرسال الطلب</button>
             </form>
         </div>
     </div>
 
     <footer>
-            <p>© 2026 معرض اصل التفاهم. جميع الحقوق محفوظة.</p>
+        <p>© 2026 معرض أصل التفاهم. جميع الحقوق محفوظة.</p>
     </footer>
 
     <script>
-        // تشغيل قائمة الجوال
+        // تفعيل قائمة التنقل في الجوال
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
 
@@ -712,7 +780,7 @@
             }
         }
 
-        // أنميشن ظهور العناصر عند النزول في الصفحة
+        // تأثيرات الظهور عند التمرير (Scroll Animations)
         const observerOptions = {
             threshold: 0.1,
             rootMargin: "0px 0px -50px 0px"
@@ -731,9 +799,8 @@
             observer.observe(el);
         });
 
-        // دوال الواتساب ونموذج الاتصال
+        // دوال الواتساب والاتصال
         function openWhatsApp(carInfo) {
-            // تم تحديث رقم الواتساب الخاص بأزرار التواصل تحت السيارات
             const phoneNumber = '966531316096';
             const msg = encodeURIComponent(`مرحباً، أريد الاستفسار عن سيارة: ${carInfo}`);
             window.open(`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${msg}`, '_blank');
@@ -756,7 +823,6 @@
             const message = document.getElementById('message').value;
             
             const msg = encodeURIComponent(`طلب استفسار جديد:\nالاسم: ${name}\nالجوال: ${phone}\nالسيارة: ${carModel}\nالرسالة: ${message}`);
-            // تم تحديث رقم الواتساب الخاص بنموذج الاستفسار هنا أيضاً
             window.open(`https://api.whatsapp.com/send?phone=966531316096&text=${msg}`, '_blank');
             event.target.reset();
         }
