@@ -55,28 +55,30 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 10px 15px;
+            padding: 12px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
             transition: all 0.4s ease;
             box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-            flex-direction: row-reverse; /* لجعل العناصر تتصاعد بشكل متناسق مع اليمين واليسار */
         }
 
-        /* تقريب اسم المعرض من زر الخطوط الثلاثة وجعله بحجم متناسق */
+        /* تم تصليح وتعديل حجم الخط هنا ليناسب الجوال تماماً */
         .logo {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 800;
             color: var(--primary-blue);
             text-decoration: none;
             letter-spacing: -0.5px;
             white-space: nowrap;
+            max-width: 75%;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .nav-links {
@@ -498,7 +500,7 @@
         @keyframes fadeIn { to { opacity: 1; } }
 
         @media (max-width: 992px) {
-            nav { padding: 10px 12px; }
+            nav { padding: 12px 15px; }
             .menu-toggle { display: block; }
             .nav-links {
                 display: none;
