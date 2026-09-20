@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>معرض اصل التفاهم - تجربة فاخرة في عالم السيارات</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Lora:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -70,11 +70,11 @@
         }
 
         .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 36px;
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
             font-weight: 700;
             color: var(--primary-gold);
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
             transition: all 0.3s ease;
         }
@@ -148,78 +148,96 @@
             justify-content: center;
         }
 
-        .hero-bg {
+        .video-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('1789888406141_image.png');
-            background-size: cover;
-            background-position: center;
             z-index: 1;
         }
 
-        .hero-bg::before {
+        .video-container::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(15, 15, 15, 0.2), rgba(212, 175, 55, 0.05));
+            background: linear-gradient(135deg, rgba(15, 15, 15, 0.5), rgba(212, 175, 55, 0.15));
             z-index: 2;
+        }
+
+        .video-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            z-index: 2;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.7) contrast(1.1);
         }
 
         .hero-content {
             position: relative;
             z-index: 3;
-            text-align: center;
+            text-align: right;
             padding: 60px 80px;
             animation: fadeInUp 1.5s ease;
-            max-width: 800px;
         }
 
         .hero-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 90px;
-            font-weight: 800;
-            letter-spacing: 6px;
-            margin-bottom: 25px;
+            font-size: 80px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
             color: var(--primary-gold);
-            text-shadow: 0 12px 40px rgba(212, 175, 55, 0.5);
-            line-height: 1;
+            text-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+            line-height: 1.1;
         }
 
         .hero-content p {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
+            font-family: 'Lora', serif;
+            font-size: 28px;
             color: var(--light-text);
-            margin-bottom: 60px;
-            text-shadow: 0 8px 20px rgba(0, 0, 0, 0.9);
-            font-weight: 400;
-            letter-spacing: 3px;
+            margin-bottom: 50px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+            font-weight: 300;
+            letter-spacing: 2px;
         }
 
         .cta-button {
-            padding: 22px 70px;
+            padding: 20px 60px;
             background: linear-gradient(135deg, var(--primary-gold) 0%, var(--accent-gold) 100%);
             color: var(--dark-bg);
             border: none;
-            border-radius: 70px;
-            font-size: 20px;
+            border-radius: 60px;
+            font-size: 18px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             letter-spacing: 2px;
-            box-shadow: 0 25px 60px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.4);
             text-transform: uppercase;
             font-family: 'Playfair Display', serif;
         }
 
         .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 35px 80px rgba(212, 175, 55, 0.6);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 30px 70px rgba(212, 175, 55, 0.6);
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--primary-gold) 100%);
         }
 
         .cta-button:active {
@@ -237,45 +255,78 @@
             }
         }
 
-        /* Container */
+        /* Main Content */
         .container {
-            max-width: 1400px;
+            max-width: 1500px;
             margin: 0 auto;
-            padding: 80px 40px;
+            padding: 0 50px;
         }
 
+        /* Section Titles */
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 60px;
-            font-weight: 700;
+            font-size: 56px;
+            text-align: right;
+            margin: 100px 0 80px 0;
             color: var(--primary-gold);
-            text-align: center;
-            margin-bottom: 80px;
             letter-spacing: 3px;
-            text-transform: capitalize;
+            position: relative;
+            padding-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-gold), rgba(212, 175, 55, 0.3), transparent);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
         /* Cars Grid */
         .cars-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 50px;
             margin-bottom: 100px;
         }
 
         .car-card {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.02));
+            border: 2px solid rgba(212, 175, 55, 0.2);
             border-radius: 20px;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 2px solid rgba(212, 175, 55, 0.2);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .car-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 2;
+            pointer-events: none;
         }
 
         .car-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--primary-gold);
-            box-shadow: 0 25px 60px rgba(212, 175, 55, 0.3);
+            transform: translateY(-15px) scale(1.02);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 40px 80px rgba(212, 175, 55, 0.2);
+        }
+
+        .car-card:hover::before {
+            opacity: 1;
         }
 
         .car-image-wrapper {
@@ -292,39 +343,61 @@
         }
 
         .car-card:hover .car-image {
-            transform: scale(1.1);
+            transform: scale(1.15);
+            filter: brightness(1.2);
         }
 
         .car-badge {
             position: absolute;
-            top: 15px;
-            left: 15px;
-            background: var(--primary-gold);
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
             color: var(--dark-bg);
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 30px;
             font-weight: 700;
             font-size: 14px;
             letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            z-index: 5;
         }
 
         .car-info {
-            padding: 30px;
+            padding: 40px;
         }
 
         .car-year {
+            color: var(--primary-gold);
             font-size: 14px;
-            color: var(--muted-gold);
-            margin-bottom: 8px;
             letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
         .car-title {
             font-family: 'Playfair Display', serif;
             font-size: 28px;
             font-weight: 700;
+            margin: 15px 0;
+            color: var(--light-text);
+            letter-spacing: 1px;
+        }
+
+        .car-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
             color: var(--primary-gold);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .car-description {
+            color: rgba(245, 245, 245, 0.8);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 20px;
         }
 
         .button-group {
@@ -335,54 +408,59 @@
 
         .btn {
             flex: 1;
-            padding: 15px 25px;
+            padding: 14px 20px;
             border: none;
-            border-radius: 50px;
-            cursor: pointer;
+            border-radius: 12px;
             font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 14px;
+            font-size: 15px;
             letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 2px solid transparent;
         }
 
         .btn-whatsapp {
-            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--accent-gold) 100%);
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
             color: var(--dark-bg);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
         }
 
         .btn-whatsapp:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5);
         }
 
         .btn-inquiry {
-            background: transparent;
-            border: 2px solid var(--primary-gold);
+            background: rgba(212, 175, 55, 0.15);
             color: var(--primary-gold);
+            border: 2px solid var(--primary-gold);
         }
 
         .btn-inquiry:hover {
-            background: var(--primary-gold);
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
             color: var(--dark-bg);
+            transform: translateY(-3px);
         }
 
         /* Contact Section */
         .contact-section {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            margin: 100px 0;
+            padding: 60px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.03));
             border: 2px solid rgba(212, 175, 55, 0.2);
             border-radius: 20px;
-            padding: 80px 40px;
-            margin: 80px 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
         }
 
         .contact-section h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 50px;
-            font-weight: 700;
+            font-size: 48px;
+            text-align: right;
+            margin-bottom: 50px;
             color: var(--primary-gold);
-            text-align: center;
-            margin-bottom: 60px;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
         }
 
         .contact-grid {
@@ -393,38 +471,48 @@
         }
 
         .contact-item {
-            text-align: center;
+            text-align: right;
+            padding: 30px;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
         }
 
         .contact-item h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 24px;
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
             color: var(--primary-gold);
             margin-bottom: 15px;
-            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .contact-item p {
-            color: var(--light-text);
-            font-size: 16px;
+            color: rgba(245, 245, 245, 0.85);
             line-height: 1.8;
         }
 
         /* Inquiry Form */
         .inquiry-form {
-            background: rgba(212, 175, 55, 0.05);
-            border: 2px solid var(--primary-gold);
+            background: rgba(26, 26, 26, 0.6);
+            padding: 50px;
             border-radius: 20px;
-            padding: 60px;
-            margin-top: 60px;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .inquiry-form h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 40px;
+            font-size: 36px;
+            text-align: right;
             color: var(--primary-gold);
             margin-bottom: 40px;
-            text-align: center;
             letter-spacing: 2px;
         }
 
@@ -434,47 +522,54 @@
 
         .form-group label {
             display: block;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 18px;
-            color: var(--primary-gold);
+            text-align: right;
             margin-bottom: 12px;
+            color: var(--primary-gold);
             font-weight: 600;
             letter-spacing: 1px;
+            font-size: 15px;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 15px 20px;
-            background: rgba(245, 245, 245, 0.05);
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            border-radius: 10px;
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
             color: var(--light-text);
             font-family: 'Lora', serif;
-            font-size: 16px;
+            font-size: 15px;
+            direction: rtl;
+            text-align: right;
             transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(245, 245, 245, 0.4);
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-gold);
-            background: rgba(245, 245, 245, 0.08);
+            background: rgba(212, 175, 55, 0.1);
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
 
         .submit-btn {
             width: 100%;
-            padding: 20px;
-            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--accent-gold) 100%);
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
             color: var(--dark-bg);
             border: none;
-            border-radius: 50px;
+            border-radius: 12px;
             font-family: 'Playfair Display', serif;
             font-size: 18px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             letter-spacing: 2px;
             text-transform: uppercase;
             box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
@@ -482,28 +577,33 @@
 
         .submit-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 25px 60px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, var(--accent-gold), var(--primary-gold));
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
         }
 
         /* Footer */
         footer {
-            background: rgba(15, 15, 15, 0.95);
-            border-top: 2px solid var(--primary-gold);
-            padding: 30px;
             text-align: center;
-            font-family: 'Lora', serif;
-            color: var(--muted-gold);
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(15, 15, 15, 0.9), rgba(26, 26, 26, 0.9));
+            border-top: 2px solid rgba(212, 175, 55, 0.2);
+            color: rgba(245, 245, 245, 0.7);
+            font-size: 14px;
             letter-spacing: 1px;
+            backdrop-filter: blur(10px);
         }
 
-        /* Scroll to Top Button */
         .scroll-top {
             position: fixed;
             bottom: 30px;
             left: 30px;
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--accent-gold) 100%);
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
             color: var(--dark-bg);
             border: none;
             border-radius: 50%;
@@ -513,6 +613,10 @@
             visibility: hidden;
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
         }
 
         .scroll-top.show {
@@ -522,13 +626,17 @@
 
         .scroll-top:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.5);
         }
 
-        /* Responsive */
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 25px;
+            }
+
             nav {
-                padding: 20px 30px;
+                padding: 15px 25px;
             }
 
             .logo {
@@ -538,66 +646,56 @@
             .nav-links {
                 display: none;
                 position: absolute;
-                top: 100%;
+                top: 70px;
                 right: 0;
+                left: 0;
                 flex-direction: column;
                 gap: 20px;
                 background: rgba(15, 15, 15, 0.98);
                 padding: 30px;
-                width: 100%;
-                border-top: 2px solid var(--primary-gold);
+                text-align: right;
+                border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+                z-index: 999;
             }
 
             .menu-toggle {
                 display: block;
             }
 
+            .hero {
+                margin-top: 70px;
+                height: 70vh;
+            }
+
             .hero-content {
-                padding: 40px 20px;
+                padding: 30px;
             }
 
             .hero-content h1 {
-                font-size: 50px;
-                letter-spacing: 3px;
+                font-size: 48px;
+                letter-spacing: 2px;
             }
 
             .hero-content p {
-                font-size: 20px;
-                margin-bottom: 40px;
-            }
-
-            .cta-button {
-                padding: 18px 50px;
-                font-size: 16px;
-            }
-
-            .container {
-                padding: 60px 20px;
+                font-size: 18px;
             }
 
             .section-title {
-                font-size: 40px;
-                margin-bottom: 50px;
+                font-size: 36px;
+                margin: 60px 0 40px 0;
             }
 
             .cars-grid {
-                gap: 25px;
-            }
-
-            .car-card {
-                border-radius: 15px;
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
 
             .contact-section {
-                padding: 60px 20px;
+                padding: 30px;
             }
 
             .inquiry-form {
-                padding: 40px 20px;
-            }
-
-            .inquiry-form h3 {
-                font-size: 28px;
+                padding: 30px;
             }
 
             .scroll-top {
@@ -644,15 +742,14 @@
             <li><a href="#inquiry" onclick="closeMenu()">الاستفسار</a></li>
         </ul>
     </nav>
- <!-- Hero Section -->
+
+    <!-- Hero Section -->
     <div class="hero">
         <div class="video-container">
             <video autoplay muted loop playsinline>
-            <source src="./video.mp4" type="video/mp4">
+                <source src="https://videos.pexels.com/video-files/2144699/2144699-sd_640_360_25fps.mp4" type="video/mp4">
             </video>
         </div>
-    <div class="hero">
-        <div class="hero-bg"></div>
         <div class="hero-content">
             <h1>معرض اصل التفاهم</h1>
             <p>تجربة شراء السيارات من نوع آخر</p>
@@ -669,15 +766,17 @@
             <div class="car-card">
                 <div class="car-image-wrapper">
                     <img class="car-image" src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&q=80" alt="تويوتا كامري">
-                    <span class="car-badge">مستعمل</span>
+                    <span class="car-badge">جديد</span>
                 </div>
                 <div class="car-info">
                     <div class="car-year">2024</div>
                     <div class="car-title">تويوتا كامري</div>
+                    <div class="car-price">95,000 ر.س</div>
                     <div class="car-description">
+                        سيارة عائلية فاخرة بحالة ممتازة. مشي قليل، صيانة منتظمة، بجميع الخيارات الحديثة والأمان المتقدم.
                     </div>
                     <div class="button-group">
-                        <button class="btn btn-whatsapp" onclick="openWhatsApp('تويوتا كامري 2024 ')">💬 تواصل</button>
+                        <button class="btn btn-whatsapp" onclick="openWhatsApp('تويوتا كامري 2024 - 95,000 ر.س')">💬 تواصل</button>
                         <button class="btn btn-inquiry" onclick="scrollToInquiry()">استفسر</button>
                     </div>
                 </div>
@@ -687,15 +786,17 @@
             <div class="car-card">
                 <div class="car-image-wrapper">
                     <img class="car-image" src="https://images.unsplash.com/photo-1592550473065-71bc4f541b49?w=600&q=80" alt="نيسان ألتيما">
-                    <span class="car-badge">مستعمل</span>
+                    <span class="car-badge">عرض خاص</span>
                 </div>
                 <div class="car-info">
                     <div class="car-year">2023</div>
                     <div class="car-title">نيسان ألتيما</div>
+                    <div class="car-price">75,000 ر.س</div>
                     <div class="car-description">
+                        سيارة اقتصادية موثوقة، استهلاك وقود منخفض، نظيفة جداً، تجديد رخصة متوفر، ضمان صيانة.
                     </div>
                     <div class="button-group">
-                        <button class="btn btn-whatsapp" onclick="openWhatsApp('نيسان ألتيما 2023 ')">💬 تواصل</button>
+                        <button class="btn btn-whatsapp" onclick="openWhatsApp('نيسان ألتيما 2023 - 75,000 ر.س')">💬 تواصل</button>
                         <button class="btn btn-inquiry" onclick="scrollToInquiry()">استفسر</button>
                     </div>
                 </div>
@@ -705,15 +806,17 @@
             <div class="car-card">
                 <div class="car-image-wrapper">
                     <img class="car-image" src="https://images.unsplash.com/photo-1557223556-51c4d440fcb3?w=600&q=80" alt="هيونداي سوناتا">
-                    <span class="car-badge">مستعمل</span>
+                    <span class="car-badge">فاخرة</span>
                 </div>
                 <div class="car-info">
                     <div class="car-year">2024</div>
                     <div class="car-title">هيونداي سوناتا</div>
+                    <div class="car-price">120,000 ر.س</div>
                     <div class="car-description">
+                        سيارة جديدة بضمان مصنعي شامل، بجميع المميزات الحديثة، صيانة مجانية لمدة سنة واحدة، تقنيات أمان متقدمة.
                     </div>
                     <div class="button-group">
-                        <button class="btn btn-whatsapp" onclick="openWhatsApp('هيونداي سوناتا 2024 ')">💬 تواصل</button>
+                        <button class="btn btn-whatsapp" onclick="openWhatsApp('هيونداي سوناتا 2024 - 120,000 ر.س')">💬 تواصل</button>
                         <button class="btn btn-inquiry" onclick="scrollToInquiry()">استفسر</button>
                     </div>
                 </div>
@@ -734,7 +837,7 @@
                 </div>
                 <div class="contact-item">
                     <h3>🕐 ساعات العمل</h3>
-                    <p>من 8 صباحاً إلى 9 مساءً<br>يومياً </p>
+                    <p>من 8 صباحاً إلى 10 مساءً<br>يومياً بلا انقطاع</p>
                 </div>
             </div>
 
@@ -766,7 +869,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 معرض اصل التفاهم - جميع الحقوق محفوظة  </p>
+        <p>© 2026 معرض اصل التفاهم - جميع الحقوق محفوظة | تجربة فاخرة في عالم السيارات</p>
     </footer>
 
     <!-- Scroll to Top Button -->
@@ -805,7 +908,7 @@
         });
 
         function openWhatsApp(carInfo) {
-            const phoneNumber = '966531316096';
+            const phoneNumber = '966558346440';
             const message = `مرحباً، أريد الاستفسار عن: ${carInfo}`;
             const encodedMessage = encodeURIComponent(message);
             const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
