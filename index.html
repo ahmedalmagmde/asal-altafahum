@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>معرض اصل التفاهم - تجربة فاخرة في عالم السيارات</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- تم إضافة خط Cairo لدعم اللغة العربية بشكل جميل -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -26,7 +27,8 @@
         }
 
         body {
-            font-family: 'Lora', serif;
+            /* تعديل الخط الأساسي ليكون Cairo */
+            font-family: 'Cairo', 'Lora', serif;
             background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1a2e 100%);
             color: var(--light-text);
             line-height: 1.8;
@@ -70,11 +72,11 @@
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cairo', 'Playfair Display', serif;
             font-size: 32px;
             font-weight: 700;
             color: var(--primary-gold);
-            letter-spacing: 3px;
+            letter-spacing: 1px;
             text-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
             transition: all 0.3s ease;
         }
@@ -94,7 +96,7 @@
             color: var(--light-text);
             text-decoration: none;
             transition: all 0.3s;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 16px;
             letter-spacing: 1px;
             position: relative;
@@ -192,30 +194,31 @@
         .hero-content {
             position: relative;
             z-index: 3;
-            text-align: right;
+            text-align: center; /* تم تعديل المحاذاة للمنتصف */
             padding: 60px 80px;
+            width: 100%;
             animation: fadeInUp 1.5s ease;
         }
 
         .hero-content h1 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cairo', serif;
             font-size: 80px;
-            font-weight: 700;
-            letter-spacing: 4px;
+            font-weight: 800;
+            letter-spacing: 2px;
             margin-bottom: 20px;
             color: var(--primary-gold);
             text-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-            line-height: 1.1;
+            line-height: 1.2;
         }
 
         .hero-content p {
-            font-family: 'Lora', serif;
+            font-family: 'Cairo', serif;
             font-size: 28px;
             color: var(--light-text);
             margin-bottom: 50px;
             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
-            font-weight: 300;
-            letter-spacing: 2px;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .cta-button {
@@ -228,10 +231,9 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             box-shadow: 0 20px 50px rgba(212, 175, 55, 0.4);
-            text-transform: uppercase;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cairo', serif;
         }
 
         .cta-button:hover {
@@ -264,15 +266,15 @@
 
         /* Section Titles */
         .section-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cairo', serif;
             font-size: 56px;
             text-align: right;
             margin: 100px 0 80px 0;
             color: var(--primary-gold);
-            letter-spacing: 3px;
+            letter-spacing: 1px;
             position: relative;
             padding-bottom: 30px;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .section-title::after {
@@ -358,7 +360,7 @@
             font-weight: 700;
             font-size: 14px;
             letter-spacing: 1px;
-            text-transform: uppercase;
+            font-family: 'Cairo', sans-serif;
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
             z-index: 5;
         }
@@ -369,28 +371,18 @@
 
         .car-year {
             color: var(--primary-gold);
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 1px;
+            font-weight: 700;
         }
 
         .car-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cairo', serif;
             font-size: 28px;
             font-weight: 700;
             margin: 15px 0;
             color: var(--light-text);
             letter-spacing: 1px;
-        }
-
-        .car-price {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            color: var(--primary-gold);
-            margin-bottom: 20px;
-            font-weight: 700;
-            text-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
         }
 
         .car-description {
@@ -411,12 +403,11 @@
             padding: 14px 20px;
             border: none;
             border-radius: 12px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 15px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            font-family: 'Cairo', sans-serif;
             border: 2px solid transparent;
         }
 
@@ -455,12 +446,12 @@
         }
 
         .contact-section h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cairo', serif;
             font-size: 48px;
             text-align: right;
             margin-bottom: 50px;
             color: var(--primary-gold);
-            letter-spacing: 2px;
+            font-weight: 800;
         }
 
         .contact-grid {
@@ -486,16 +477,17 @@
         }
 
         .contact-item h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cairo', serif;
             font-size: 22px;
             color: var(--primary-gold);
             margin-bottom: 15px;
-            letter-spacing: 1px;
+            font-weight: 700;
         }
 
         .contact-item p {
             color: rgba(245, 245, 245, 0.85);
             line-height: 1.8;
+            font-size: 16px;
         }
 
         /* Inquiry Form */
@@ -508,12 +500,12 @@
         }
 
         .inquiry-form h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cairo', serif;
             font-size: 36px;
             text-align: right;
             color: var(--primary-gold);
             margin-bottom: 40px;
-            letter-spacing: 2px;
+            font-weight: 800;
         }
 
         .form-group {
@@ -525,9 +517,8 @@
             text-align: right;
             margin-bottom: 12px;
             color: var(--primary-gold);
-            font-weight: 600;
-            letter-spacing: 1px;
-            font-size: 15px;
+            font-weight: 700;
+            font-size: 16px;
         }
 
         .form-group input,
@@ -538,7 +529,7 @@
             border: 2px solid rgba(212, 175, 55, 0.2);
             border-radius: 12px;
             color: var(--light-text);
-            font-family: 'Lora', serif;
+            font-family: 'Cairo', serif;
             font-size: 15px;
             direction: rtl;
             text-align: right;
@@ -565,13 +556,11 @@
             color: var(--dark-bg);
             border: none;
             border-radius: 12px;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cairo', serif;
             font-size: 18px;
-            font-weight: 700;
+            font-weight: 800;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            letter-spacing: 2px;
-            text-transform: uppercase;
             box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
         }
 
@@ -592,9 +581,9 @@
             background: linear-gradient(135deg, rgba(15, 15, 15, 0.9), rgba(26, 26, 26, 0.9));
             border-top: 2px solid rgba(212, 175, 55, 0.2);
             color: rgba(245, 245, 245, 0.7);
-            font-size: 14px;
-            letter-spacing: 1px;
+            font-size: 15px;
             backdrop-filter: blur(10px);
+            font-family: 'Cairo', sans-serif;
         }
 
         .scroll-top {
@@ -673,7 +662,6 @@
 
             .hero-content h1 {
                 font-size: 48px;
-                letter-spacing: 2px;
             }
 
             .hero-content p {
@@ -761,7 +749,9 @@
     <div class="container">
         <h2 class="section-title" id="cars">السيارات المتاحة</h2>
 
+        <!-- تم تصحيح حاوية الشبكة هنا لجمع كل السيارات داخلها دون انقطاع -->
         <div class="cars-grid">
+            
             <!-- Car 1 -->
             <div class="car-card">
                 <div class="car-image-wrapper">
@@ -815,11 +805,11 @@
                     </div>
                 </div>
             </div>
-        </div>
- <!-- Car 4 -->
+
+            <!-- Car 4 -->
             <div class="car-card">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="https://images.unsplash.com/photo-15575752-51c4d440fcb3?w=600&q=80" alt="هيونداي سوناتا">
+                    <img class="car-image" src="https://images.unsplash.com/photo-1557223556-51c4d440fcb3?w=600&q=80" alt="هيونداي سوناتا">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
@@ -833,11 +823,11 @@
                     </div>
                 </div>
             </div>
-        </div>
- <!-- Car 5 -->
+            
+            <!-- Car 5 -->
             <div class="car-card">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="https://images.unsplash.com/photo-155754476-51c4d440fcb3?w=600&q=80" alt="هيونداي سوناتا">
+                    <img class="car-image" src="https://images.unsplash.com/photo-1557223556-51c4d440fcb3?w=600&q=80" alt="هيونداي سوناتا">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
@@ -851,11 +841,11 @@
                     </div>
                 </div>
             </div>
-        </div>
- <!-- Car 6 -->
+            
+            <!-- Car 6 -->
             <div class="car-card">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="https://images.unsplash.com/photo-1551222-51c4d440fcb3?w=600&q=80" alt="هيونداي سوناتا">
+                    <img class="car-image" src="https://images.unsplash.com/photo-1557223556-51c4d440fcb3?w=600&q=80" alt="هيونداي سوناتا">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
@@ -869,7 +859,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+
+        </div> <!-- هنا فقط تم إغلاق حاوية cars-grid لضمان بقاء جميع السيارات داخلها -->
 
         <!-- Contact Section -->
         <div class="contact-section" id="contact">
