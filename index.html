@@ -51,7 +51,6 @@
             pointer-events: none;
         }
 
-        /* تصميم الحاسب الافتراضي */
         nav {
             position: fixed;
             top: 0;
@@ -81,10 +80,6 @@
             color: var(--primary-blue);
             text-decoration: none;
             letter-spacing: -0.5px;
-        }
-
-        .logo-icon {
-            display: none; /* تظهر فقط في الجوال إذا رغبت */
         }
 
         .nav-links {
@@ -416,7 +411,7 @@
             font-weight: 600;
         }
 
-        /* تصميم فريد ومخصص للجوال والتابلت (يختلف تماماً عن الحاسب) */
+        /* تعديل القائمة الجانبية لتفتح من جهة اليمين بشكل صحيح ومناسب للغة العربية */
         @media (max-width: 992px) {
             nav {
                 padding: 12px 20px;
@@ -430,17 +425,16 @@
                 font-size: 19px;
             }
 
-            /* قائمة جانبية منزلقة (Drawer Menu) مميزة للهواتف */
             .nav-links {
                 position: fixed;
                 top: 0;
-                right: -280px; /* مخفية خارج الشاشة يميناً */
+                right: -280px; /* مخفية تماماً خارج الشاشة من جهة اليمين */
                 width: 270px;
                 height: 100vh;
                 background: var(--white);
                 flex-direction: column;
                 padding: 80px 25px 30px;
-                box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+                box-shadow: 10px 0 30px rgba(0,0,0,0.15);
                 transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
                 z-index: 1080;
                 gap: 20px;
@@ -448,7 +442,7 @@
             }
 
             .nav-links.active {
-                right: 0; /* ظهور القائمة عند الضغط على الخطوط الثلاثة */
+                right: 0; /* تنزلق من اليمين لتظهر بداخل الشاشة عند النقر */
             }
 
             .nav-links a {
@@ -753,7 +747,7 @@
     </footer>
 
     <script>
-        // العودة لأول الصفحة تلقائياً عند التحديث أو إعادة التحميل
+        // العودة لأول الصفحة تلقائياً عند التحديث
         window.onbeforeunload = function () {
             window.scrollTo(0, 0);
         };
