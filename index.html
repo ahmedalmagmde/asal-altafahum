@@ -2,11 +2,11 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>معرض أصل التفاهم | للسيارات</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     
- <style>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -19,7 +19,7 @@
             --primary-blue-dark: #1e3a8a;
             --light-bg: #f4f6f9;
             --white: #ffffff;
-            --card-bg: rgba(255, 255, 255, 0.7);
+            --card-bg: rgba(255, 255, 255, 0.85);
             --text-dark: #2d3436;
             --text-gray: #636e72;
             --border-color: rgba(37, 99, 235, 0.15);
@@ -35,6 +35,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
+            -webkit-text-size-adjust: 100%;
         }
 
         .bg-glow {
@@ -58,7 +59,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
             border-bottom: 1px solid var(--border-color);
@@ -68,16 +69,17 @@
         }
 
         .logo {
-            font-size: 26px;
+            font-size: clamp(20px, 2.5vw, 26px);
             font-weight: 900;
             color: var(--primary-blue);
             text-decoration: none;
             letter-spacing: -0.5px;
+            white-space: nowrap;
         }
 
         .nav-links {
             display: flex;
-            gap: 35px;
+            gap: 25px;
             list-style: none;
         }
 
@@ -85,7 +87,7 @@
             color: var(--text-dark);
             text-decoration: none;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 15px;
             transition: color 0.3s;
             position: relative;
         }
@@ -116,6 +118,7 @@
             color: var(--primary-blue);
             font-size: 28px;
             cursor: pointer;
+            padding: 5px;
         }
 
         .hero {
@@ -139,30 +142,32 @@
             z-index: -2;
         }
 
-        /* تعديل الشفافية هنا لإظهار الفيديو بشكل أوضح مع الحفاظ على وضوح النص */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.35); /* طبقة داكنة خفيفة تبرز الفيديو والنص */
+            background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(2px);
             z-index: -1;
         }
 
         .hero-content {
+            width: 100%;
             max-width: 800px;
-            background: rgba(255, 255, 255, 0.75); /* زيادة وضوح الصندوق قليلاً ليبرز فوق الفيديو */
-            padding: 50px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: clamp(30px, 5vw, 50px);
             border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            margin: 0 15px;
         }
 
         .hero-content h1 {
-            font-size: 4.5rem;
+            font-size: clamp(2.2rem, 5vw, 4.5rem);
             font-weight: 900;
             color: var(--text-dark);
             margin-bottom: 15px;
@@ -176,9 +181,9 @@
         }
 
         .hero-content p {
-            font-size: 1.4rem;
+            font-size: clamp(1rem, 2vw, 1.4rem);
             color: var(--text-gray);
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             animation: slideUp 1s ease 0.3s forwards;
             opacity: 0;
             transform: translateY(30px);
@@ -186,12 +191,12 @@
         }
 
         .btn-main {
-            padding: 16px 45px;
+            padding: 14px 40px;
             background: var(--primary-blue);
             color: #fff;
             border: none;
             border-radius: 50px;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
             font-weight: 800;
             font-family: 'Cairo', sans-serif;
             cursor: pointer;
@@ -210,15 +215,15 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 100px 20px;
+            padding: clamp(60px, 8vw, 100px) 20px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.8rem;
+            font-size: clamp(2rem, 4vw, 2.8rem);
             font-weight: 900;
             color: var(--text-dark);
-            margin-bottom: 70px;
+            margin-bottom: clamp(40px, 6vw, 70px);
             position: relative;
         }
 
@@ -232,10 +237,23 @@
             border-radius: 4px;
         }
 
+        /* تحسين التوزيع المتجاوب للشبكة (تتطابق مع الجوال، التابلت، والحاسب) */
         .cars-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        @media (min-width: 1024px) {
+            .cars-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .cars-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         .car-card {
@@ -249,6 +267,9 @@
             opacity: 0;
             transform: translateY(40px);
             box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .car-card.reveal {
@@ -257,7 +278,7 @@
         }
 
         .car-card:hover {
-            transform: translateY(-12px);
+            transform: translateY(-8px);
             border-color: rgba(37, 99, 235, 0.4);
             box-shadow: var(--shadow-hover);
         }
@@ -266,9 +287,9 @@
             position: relative;
             border-radius: 18px;
             overflow: hidden;
-            height: 240px;
-            margin-bottom: 25px;
-            background: #fff;
+            height: 220px;
+            margin-bottom: 20px;
+            background: #eaeaea;
         }
 
         .car-image {
@@ -284,13 +305,13 @@
 
         .car-badge {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.9);
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.95);
             color: var(--primary-blue-dark);
-            padding: 6px 16px;
+            padding: 5px 14px;
             border-radius: 30px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 800;
             border: 1px solid rgba(37, 99, 235, 0.3);
             backdrop-filter: blur(5px);
@@ -298,42 +319,43 @@
         }
 
         .car-info {
-            padding: 0 10px;
+            padding: 0 5px;
         }
 
         .car-year {
             color: var(--text-gray);
-            font-size: 0.95rem;
-            margin-bottom: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
             font-weight: 600;
         }
 
         .car-title {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 800;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: var(--text-dark);
         }
 
         .button-group {
             display: flex;
-            gap: 15px;
+            gap: 12px;
         }
 
         .btn-card {
             flex: 1;
-            padding: 12px;
-            border-radius: 14px;
+            padding: 11px 8px;
+            border-radius: 12px;
             border: none;
             font-family: 'Cairo', sans-serif;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
+            text-align: center;
         }
 
         .btn-whatsapp {
@@ -362,16 +384,16 @@
 
         .contact-info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
         }
 
         .contact-box {
             background: var(--white);
             border: 1px solid var(--border-color);
             border-radius: 24px;
-            padding: 40px 30px;
+            padding: 35px 25px;
             text-align: center;
             transition: all 0.3s ease;
             opacity: 0;
@@ -385,30 +407,30 @@
         }
 
         .contact-box:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
             border-color: var(--primary-blue);
             box-shadow: var(--shadow-hover);
         }
 
         .contact-box h3 {
             color: var(--text-dark);
-            margin-bottom: 15px;
-            font-size: 1.6rem;
+            margin-bottom: 12px;
+            font-size: 1.4rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .contact-box h3 span {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--primary-blue);
         }
 
         .contact-box p {
             color: var(--text-gray);
-            line-height: 1.8;
-            font-size: 1.15rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
             font-weight: 600;
         }
 
@@ -416,7 +438,7 @@
             background: var(--white);
             border: 1px solid var(--border-color);
             border-radius: 30px;
-            padding: 60px;
+            padding: clamp(30px, 5vw, 60px);
             opacity: 0;
             transform: translateY(30px);
             box-shadow: var(--shadow-soft);
@@ -430,20 +452,20 @@
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 22px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: var(--text-dark);
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
 
         .form-group input, .form-group textarea {
             width: 100%;
-            padding: 16px;
+            padding: 15px;
             background: var(--light-bg);
             border: 1px solid rgba(0,0,0,0.08);
             border-radius: 16px;
@@ -462,40 +484,42 @@
 
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 35px 20px;
             border-top: 1px solid var(--border-color);
             color: var(--text-gray);
             background: var(--white);
             font-weight: 600;
+            font-size: 0.95rem;
         }
 
         @keyframes slideDown { to { opacity: 1; transform: translateY(0); } }
         @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { to { opacity: 1; } }
 
-        @media (max-width: 768px) {
-            nav { padding: 15px 20px; }
+        /* تعديلات مخصصة للشاشات الصغيرة والمتوسطة (موبايل وتابلت) */
+        @media (max-width: 992px) {
+            nav { padding: 12px 20px; }
             .menu-toggle { display: block; }
             .nav-links {
                 display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 70px;
+                top: 100%;
                 right: 0;
                 width: 100%;
                 background: rgba(255, 255, 255, 0.98);
                 border-bottom: 1px solid var(--border-color);
-                padding: 20px 0;
+                padding: 25px 0;
                 text-align: center;
                 box-shadow: var(--shadow-soft);
+                gap: 20px;
             }
             .nav-links.active {
                 display: flex;
             }
-            .hero-content { padding: 30px 20px; border-radius: 20px; margin: 0 15px; }
-            .hero-content h1 { font-size: 2.8rem; }
-            .hero-content p { font-size: 1.1rem; }
-            .contact-form-section { padding: 40px 20px; }
+            .nav-links a {
+                font-size: 17px;
+            }
         }
     </style>
 </head>
@@ -504,7 +528,7 @@
     <div class="bg-glow"></div>
 
     <nav>
-        <button class="menu-toggle" id="menuToggle">☰</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="قائمة التنقل">☰</button>
         <a href="#" class="logo">معرض أصل التفاهم للسيارات</a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#" onclick="closeMenu()">الرئيسية</a></li>
@@ -515,7 +539,6 @@
     </nav>
 
     <div class="hero">
-        <!-- استخدمنا مصدر فيديو بديل كمثال يسهل تشغيله، يمكنك إبقاء رابط الفيديو الخاص بك "./video.mp4" -->
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="./video.mp4" type="video/mp4">
         </video>
@@ -523,7 +546,7 @@
         <div class="hero-content">
             <h1>معرض <span>أصل التفاهم</span></h1>
             <p>تجربة شراء السيارات من نوع آخر</p>
-            <button class="btn-main" onclick="document.getElementById('cars').scrollIntoView()">استعرض السيارات</button>
+            <button class="btn-main" onclick="document.getElementById('cars').scrollIntoView({behavior: 'smooth'})">استعرض السيارات</button>
         </div>
     </div>
 
@@ -533,189 +556,212 @@
         <div class="cars-grid">
             <!-- 1 -->
             <div class="car-card reveal-element">
-                <div class="car-image-wrapper">
-                    <!-- Placeholder Fallback Image in case CAR1.jpg doesn't exist -->
-                    <img class="car-image" src="CAR1.jpg"">
-                    <span class="car-badge">مستعمل</span>
-                </div>
-                <div class="car-info">
-                    <div class="car-year">موديل 2022</div>
-                    <div class="car-title">نيسان صني </div>
-                    <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('نيسان صني 2022 ')">تواصل 💬</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('نيسان صني')">استفسار 📝</button>
+                <div>
+                    <div class="car-image-wrapper">
+                        <img class="car-image" src="CAR1.jpg" alt="نيسان صني">
+                        <span class="car-badge">مستعمل</span>
                     </div>
+                    <div class="car-info">
+                        <div class="car-year">موديل 2022</div>
+                        <div class="car-title">نيسان صني</div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn-card btn-whatsapp" onclick="openWhatsApp('نيسان صني 2022')">تواصل 💬</button>
+                    <button class="btn-card btn-inquiry" onclick="scrollToInquiry('نيسان صني')">استفسار 📝</button>
                 </div>
             </div>
             <!-- 2 -->
             <div class="car-card reveal-element">
-                <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR2.jpg">
-                    <span class="car-badge">مستعمل</span>
-                </div>
-                <div class="car-info">
-                    <div class="car-year">موديل 2024</div>
-                    <div class="car-title">هونداي  توسان</div>
-                    <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هونداي  توسان 2024')">تواصل 💬</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('توسان')">استفسار 📝</button>
+                <div>
+                    <div class="car-image-wrapper">
+                        <img class="car-image" src="CAR2.jpg" alt="هونداي توسان">
+                        <span class="car-badge">مستعمل</span>
                     </div>
+                    <div class="car-info">
+                        <div class="car-year">موديل 2024</div>
+                        <div class="car-title">هونداي توسان</div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هونداي توسان 2024')">تواصل 💬</button>
+                    <button class="btn-card btn-inquiry" onclick="scrollToInquiry('توسان')">استفسار 📝</button>
                 </div>
             </div>
             <!-- 3 -->
             <div class="car-card reveal-element">
-                <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR3.jpg">
-                    <span class="car-badge">مستعمل</span>
-                </div>
-                <div class="car-info">
-                    <div class="car-year">موديل 2024</div>
-                    <div class="car-title">هونداي النترا </div>
-                    <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هونداي النترا 2024')">تواصل 💬</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('هونداي النترا ')">استفسار 📝</button>
+                <div>
+                    <div class="car-image-wrapper">
+                        <img class="car-image" src="CAR3.jpg" alt="هونداي النترا">
+                        <span class="car-badge">مستعمل</span>
                     </div>
+                    <div class="car-info">
+                        <div class="car-year">موديل 2024</div>
+                        <div class="car-title">هونداي النترا</div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هونداي النترا 2024')">تواصل 💬</button>
+                    <button class="btn-card btn-inquiry" onclick="scrollToInquiry('هونداي النترا')">استفسار 📝</button>
                 </div>
             </div>
             <!-- 4 -->
             <div class="car-card reveal-element">
-                <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR4.jpg">
-                    <span class="car-badge">مستعمل</span>
-                </div>
-                <div class="car-info">
-                    <div class="car-year">موديل 2024</div>
-                    <div class="car-title">هونداي اكسنت </div>
-                    <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هونداي اكسنت 2024')">تواصل 💬</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('هونداي اكسنت ')">استفسار 📝</button>
+                <div>
+                    <div class="car-image-wrapper">
+                        <img class="car-image" src="CAR4.jpg" alt="هونداي اكسنت">
+                        <span class="car-badge">مستعمل</span>
                     </div>
+                    <div class="car-info">
+                        <div class="car-year">موديل 2024</div>
+                        <div class="car-title">هونداي اكسنت</div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هونداي اكسنت 2024')">تواصل 💬</button>
+                    <button class="btn-card btn-inquiry" onclick="scrollToInquiry('هونداي اكسنت')">استفسار 📝</button>
                 </div>
             </div>
             <!-- 5 -->
             <div class="car-card reveal-element">
-                <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR5.jpg">
-                    <span class="car-badge">مستعمل</span>
-                </div>
-                <div class="car-info">
-                    <div class="car-year">موديل 2023</div>
-                    <div class="car-title">تويوتا كامري </div>
-                    <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('تويوتا كامري 2023')">تواصل 💬</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا كامري ')">استفسار 📝</button>
+                <div>
+                    <div class="car-image-wrapper">
+                        <img class="car-image" src="CAR5.jpg" alt="تويوتا كامري">
+                        <span class="car-badge">مستعمل</span>
                     </div>
+                    <div class="car-info">
+                        <div class="car-year">موديل 2023</div>
+                        <div class="car-title">تويوتا كامري</div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn-card btn-whatsapp" onclick="openWhatsApp('تويوتا كامري 2023')">تواصل 💬</button>
+                    <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا كامري')">استفسار 📝</button>
                 </div>
             </div>
             <!-- 6 -->
             <div class="car-card reveal-element">
-                <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR6.jpg">
-                    <span class="car-badge">مستعمل</span>
-                </div>
-                <div class="car-info">
-                    <div class="car-year">موديل 2022</div>
-                    <div class="car-title">هوندا اكورد  </div>
-                    <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هوندا اكورد 2022')">تواصل 💬</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('هوندا اكورد ')">استفسار 📝</button>
+                <div>
+                    <div class="car-image-wrapper">
+                        <img class="car-image" src="CAR6.jpg" alt="هوندا اكورد">
+                        <span class="car-badge">مستعمل</span>
                     </div>
+                    <div class="car-info">
+                        <div class="car-year">موديل 2022</div>
+                        <div class="car-title">هوندا اكورد</div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هوندا اكورد 2022')">تواصل 💬</button>
+                    <button class="btn-card btn-inquiry" onclick="scrollToInquiry('هوندا اكورد')">استفسار 📝</button>
                 </div>
             </div>
             <!-- 7 -->
             <div class="car-card reveal-element">
-                <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR7.jpg">
-                    <span class="car-badge">مستعمل</span>
-                </div>
-                <div class="car-info">
-                    <div class="car-year">موديل 2024</div>
-                    <div class="car-title"> تويوتا يارس 2022</div>
-                    <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('تويوتا يارس 2022')">تواصل 💬</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا يارس ')">استفسار 📝</button>
+                <div>
+                    <div class="car-image-wrapper">
+                        <img class="car-image" src="CAR7.jpg" alt="تويوتا يارس">
+                        <span class="car-badge">مستعمل</span>
                     </div>
+                    <div class="car-info">
+                        <div class="car-year">موديل 2022</div>
+                        <div class="car-title">تويوتا يارس</div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn-card btn-whatsapp" onclick="openWhatsApp('تويوتا يارس 2022')">تواصل 💬</button>
+                    <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا يارس')">استفسار 📝</button>
                 </div>
             </div>
             <!-- 8 -->
             <div class="car-card reveal-element">
-                <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR8.jpg">
-                    <span class="car-badge">مستعمل</span>
-                </div>
-                <div class="car-info">
-                    <div class="car-year">موديل 2023</div>
-                    <div class="car-title">هونداي اكسنت </div>
-                    <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هونداي اكسنت 2023')">تواصل 💬</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('هونداي اكسنت ')">استفسار 📝</button>
+                <div>
+                    <div class="car-image-wrapper">
+                        <img class="car-image" src="CAR8.jpg" alt="هونداي اكسنت">
+                        <span class="car-badge">مستعمل</span>
                     </div>
+                    <div class="car-info">
+                        <div class="car-year">موديل 2023</div>
+                        <div class="car-title">هونداي اكسنت</div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn-card btn-whatsapp" onclick="openWhatsApp('هونداي اكسنت 2023')">تواصل 💬</button>
+                    <button class="btn-card btn-inquiry" onclick="scrollToInquiry('هونداي اكسنت')">استفسار 📝</button>
                 </div>
             </div>
             <!-- 9 -->
             <div class="car-card reveal-element">
-                <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR9.jpg">
-                    <span class="car-badge">مستعمل</span>
-                </div>
-                <div class="car-info">
-                    <div class="car-year">موديل 2016</div>
-                    <div class="car-title">تويوتا كامري </div>
-                    <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('تويوتا كامري 2016')">تواصل 💬</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا كامري ')">استفسار 📝</button>
+                <div>
+                    <div class="car-image-wrapper">
+                        <img class="car-image" src="CAR9.jpg" alt="تويوتا كامري">
+                        <span class="car-badge">مستعمل</span>
                     </div>
+                    <div class="car-info">
+                        <div class="car-year">موديل 2016</div>
+                        <div class="car-title">تويوتا كامري</div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn-card btn-whatsapp" onclick="openWhatsApp('تويوتا كامري 2016')">تواصل 💬</button>
+                    <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا كامري')">استفسار 📝</button>
                 </div>
             </div>
             <!-- 10 -->
             <div class="car-card reveal-element">
-                <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR10.jpg">
-                    <span class="car-badge">مستعمل</span>
-                </div>
-                <div class="car-info">
-                    <div class="car-year">موديل 2017</div>
-                    <div class="car-title"> هونداي اكسنت </div>
-                    <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('اكسنت هونداي 2017')">تواصل 💬</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('هونداي اكسنت ')">استفسار 📝</button>
+                <div>
+                    <div class="car-image-wrapper">
+                        <img class="car-image" src="CAR10.jpg" alt="هونداي اكسنت">
+                        <span class="car-badge">مستعمل</span>
                     </div>
+                    <div class="car-info">
+                        <div class="car-year">موديل 2017</div>
+                        <div class="car-title">هونداي اكسنت</div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn-card btn-whatsapp" onclick="openWhatsApp('اكسنت هونداي 2017')">تواصل 💬</button>
+                    <button class="btn-card btn-inquiry" onclick="scrollToInquiry('هونداي اكسنت')">استفسار 📝</button>
                 </div>
             </div>
             <!-- 11 -->
             <div class="car-card reveal-element">
-                <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR11.jpg">
-                    <span class="car-badge">مستعمل</span>
-                </div>
-                <div class="car-info">
-                    <div class="car-year">موديل 2015</div>
-                    <div class="car-title"> تويوتا كامري </div>
-                    <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('تويوتا كامري 2015')">تواصل 💬</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا كامري ')">استفسار 📝</button>
+                <div>
+                    <div class="car-image-wrapper">
+                        <img class="car-image" src="CAR11.jpg" alt="تويوتا كامري">
+                        <span class="car-badge">مستعمل</span>
                     </div>
+                    <div class="car-info">
+                        <div class="car-year">موديل 2015</div>
+                        <div class="car-title">تويوتا كامري</div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn-card btn-whatsapp" onclick="openWhatsApp('تويوتا كامري 2015')">تواصل 💬</button>
+                    <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا كامري')">استفسار 📝</button>
                 </div>
             </div>
             <!-- 12 -->
             <div class="car-card reveal-element">
-                <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR12.jpg">
-                    <span class="car-badge">مستعمل</span>
-                </div>
-                <div class="car-info">
-                    <div class="car-year">موديل 2024</div>
-                    <div class="car-title">سيارة 12</div>
-                    <div class="button-group">
-                        <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 12')">تواصل 💬</button>
-                        <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 12')">استفسار 📝</button>
+                <div>
+                    <div class="car-image-wrapper">
+                        <img class="car-image" src="CAR12.jpg" alt="سيارة 12">
+                        <span class="car-badge">مستعمل</span>
                     </div>
+                    <div class="car-info">
+                        <div class="car-year">موديل 2024</div>
+                        <div class="car-title">سيارة 12</div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn-card btn-whatsapp" onclick="openWhatsApp('سيارة 12')">تواصل 💬</button>
+                    <button class="btn-card btn-inquiry" onclick="scrollToInquiry('سيارة 12')">استفسار 📝</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container" id="contact" style="padding-top: 50px;">
+    <div class="container" id="contact" style="padding-top: 30px;">
         <h2 class="section-title reveal-element">تواصل معنا</h2>
         
         <div class="contact-info-grid">
@@ -729,12 +775,12 @@
             </div>
             <div class="contact-box reveal-element">
                 <h3><span>🕐</span> ساعات العمل</h3>
-                <p>من 8 صباحاً إلى 10 مساءً<br>يومياً</p>
+                <p>من 7 صباحاً إلى 8 مساءً<br>يومياً</p>
             </div>
         </div>
 
         <div class="contact-form-section reveal-element" id="inquiry">
-            <h3 style="text-align: center; color: var(--text-dark); margin-bottom: 40px; font-size: 2.2rem; font-weight: 800;">استفسر عن السيارة</h3>
+            <h3 style="text-align: center; color: var(--text-dark); margin-bottom: 30px; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800;">استفسر عن السيارة</h3>
             <form onsubmit="handleSubmit(event)">
                 <div class="form-group">
                     <label>الاسم الكامل</label>
@@ -750,9 +796,9 @@
                 </div>
                 <div class="form-group">
                     <label>الرسالة / الاستفسار</label>
-                    <textarea id="message" rows="5" required placeholder="اكتب استفسارك هنا وسنقوم بالرد عليك في أقرب وقت..."></textarea>
+                    <textarea id="message" rows="4" required placeholder="اكتب استفسارك هنا وسنقوم بالرد عليك في أقرب وقت..."></textarea>
                 </div>
-                <button type="submit" class="btn-main" style="width: 100%; margin-top: 15px; border-radius: 16px;">إرسال الطلب</button>
+                <button type="submit" class="btn-main" style="width: 100%; margin-top: 10px; border-radius: 16px;">إرسال الطلب</button>
             </form>
         </div>
     </div>
@@ -762,7 +808,6 @@
     </footer>
 
     <script>
-        // تفعيل قائمة التنقل في الجوال
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
 
@@ -773,12 +818,11 @@
         }
 
         function closeMenu() {
-            if(window.innerWidth <= 768) {
+            if(window.innerWidth <= 992) {
                 navLinks.classList.remove('active');
             }
         }
 
-        // تأثيرات الظهور عند التمرير (Scroll Animations)
         const observerOptions = {
             threshold: 0.1,
             rootMargin: "0px 0px -50px 0px"
@@ -797,7 +841,6 @@
             observer.observe(el);
         });
 
-        // دوال الواتساب والاتصال
         function openWhatsApp(carInfo) {
             const phoneNumber = '966531316096';
             const msg = encodeURIComponent(`مرحباً، أريد الاستفسار عن سيارة: ${carInfo}`);
@@ -810,7 +853,10 @@
             if(carName) {
                 document.getElementById('carModel').value = carName;
             }
-            setTimeout(() => document.getElementById('name').focus(), 800);
+            setTimeout(() => {
+                const nameInput = document.getElementById('name');
+                if(nameInput) nameInput.focus();
+            }, 800);
         }
 
         function handleSubmit(event) {
