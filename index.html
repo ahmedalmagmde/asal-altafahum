@@ -15,17 +15,17 @@
         }
 
         :root {
-            /* لوحة الألوان الفاتحة والفخمة */
-            --primary-gold: #c5a059;
-            --primary-gold-dark: #a4813f;
+            /* لوحة الألوان الفاتحة والفخمة (الثيم الأزرق) */
+            --primary-blue: #2563eb;
+            --primary-blue-dark: #1e3a8a;
             --light-bg: #f4f6f9;
             --white: #ffffff;
             --card-bg: rgba(255, 255, 255, 0.7);
             --text-dark: #2d3436;
             --text-gray: #636e72;
-            --border-color: rgba(197, 160, 89, 0.15);
+            --border-color: rgba(37, 99, 235, 0.15);
             --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.04);
-            --shadow-hover: 0 20px 40px rgba(197, 160, 89, 0.12);
+            --shadow-hover: 0 20px 40px rgba(37, 99, 235, 0.12);
             --glass-blur: blur(16px);
         }
 
@@ -45,7 +45,7 @@
             width: 100vw;
             height: 100vh;
             background: 
-                radial-gradient(circle at 15% 50%, rgba(197, 160, 89, 0.05), transparent 50%),
+                radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.05), transparent 50%),
                 radial-gradient(circle at 85% 30%, rgba(0, 86, 179, 0.03), transparent 50%);
             z-index: -1;
             pointer-events: none;
@@ -71,7 +71,7 @@
         .logo {
             font-size: 26px;
             font-weight: 900;
-            color: var(--primary-gold);
+            color: var(--primary-blue);
             text-decoration: none;
             letter-spacing: -0.5px;
         }
@@ -98,12 +98,12 @@
             right: 0;
             width: 0;
             height: 2px;
-            background: var(--primary-gold);
+            background: var(--primary-blue);
             transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--primary-gold);
+            color: var(--primary-blue);
         }
 
         .nav-links a:hover::after {
@@ -114,7 +114,7 @@
             display: none;
             background: none;
             border: none;
-            color: var(--primary-gold);
+            color: var(--primary-blue);
             font-size: 28px;
             cursor: pointer;
         }
@@ -172,7 +172,7 @@
         }
 
         .hero-content h1 span {
-            color: var(--primary-gold);
+            color: var(--primary-blue);
         }
 
         .hero-content p {
@@ -187,7 +187,7 @@
 
         .btn-main {
             padding: 16px 45px;
-            background: var(--primary-gold);
+            background: var(--primary-blue);
             color: #fff;
             border: none;
             border-radius: 50px;
@@ -198,13 +198,13 @@
             transition: all 0.3s ease;
             animation: fadeIn 1s ease 0.6s forwards;
             opacity: 0;
-            box-shadow: 0 10px 25px rgba(197, 160, 89, 0.4);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
         }
 
         .btn-main:hover {
             transform: scale(1.03) translateY(-3px);
-            background: var(--primary-gold-dark);
-            box-shadow: 0 15px 35px rgba(197, 160, 89, 0.5);
+            background: var(--primary-blue-dark);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.5);
         }
 
         .container {
@@ -227,7 +227,7 @@
             display: block;
             width: 60px;
             height: 4px;
-            background: var(--primary-gold);
+            background: var(--primary-blue);
             margin: 15px auto 0;
             border-radius: 4px;
         }
@@ -258,7 +258,7 @@
 
         .car-card:hover {
             transform: translateY(-12px);
-            border-color: rgba(197, 160, 89, 0.4);
+            border-color: rgba(37, 99, 235, 0.4);
             box-shadow: var(--shadow-hover);
         }
 
@@ -287,12 +287,12 @@
             top: 15px;
             right: 15px;
             background: rgba(255, 255, 255, 0.9);
-            color: var(--primary-gold-dark);
+            color: var(--primary-blue-dark);
             padding: 6px 16px;
             border-radius: 30px;
             font-size: 0.9rem;
             font-weight: 800;
-            border: 1px solid rgba(197, 160, 89, 0.3);
+            border: 1px solid rgba(37, 99, 235, 0.3);
             backdrop-filter: blur(5px);
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
@@ -349,13 +349,13 @@
         }
 
         .btn-inquiry {
-            background: rgba(197, 160, 89, 0.1);
-            color: var(--primary-gold-dark);
-            border: 1px solid rgba(197, 160, 89, 0.3);
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-blue-dark);
+            border: 1px solid rgba(37, 99, 235, 0.3);
         }
 
         .btn-inquiry:hover {
-            background: var(--primary-gold);
+            background: var(--primary-blue);
             color: #fff;
             transform: translateY(-2px);
         }
@@ -386,7 +386,7 @@
 
         .contact-box:hover {
             transform: translateY(-8px);
-            border-color: var(--primary-gold);
+            border-color: var(--primary-blue);
             box-shadow: var(--shadow-hover);
         }
 
@@ -402,7 +402,7 @@
 
         .contact-box h3 span {
             font-size: 2rem;
-            color: var(--primary-gold);
+            color: var(--primary-blue);
         }
 
         .contact-box p {
@@ -455,9 +455,9 @@
 
         .form-group input:focus, .form-group textarea:focus {
             outline: none;
-            border-color: var(--primary-gold);
+            border-color: var(--primary-blue);
             background: #fff;
-            box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.1);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
         }
 
         footer {
@@ -524,7 +524,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>معرض <span>أصل التفاهم</span></h1>
-            <p>اتجربة شراء السيارات من نوع آخر</p>
+            <p>تجربة شراء السيارات من نوع آخر</p>
             <button class="btn-main" onclick="document.getElementById('cars').scrollIntoView()">استعرض السيارات</button>
         </div>
     </div>
@@ -537,7 +537,7 @@
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
                     <!-- Placeholder Fallback Image in case CAR1.jpg doesn't exist -->
-                    <img class="car-image" src="CAR1.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Toyota+Camry'" alt="تويوتا كامري">
+                    <img class="car-image" src="CAR1.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/2563eb?text=Toyota+Camry'" alt="تويوتا كامري">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
@@ -552,7 +552,7 @@
             <!-- 2 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR2.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Nissan+Altima'" alt="نيسان التيما">
+                    <img class="car-image" src="CAR2.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/2563eb?text=Nissan+Altima'" alt="نيسان التيما">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
@@ -567,7 +567,7 @@
             <!-- 3 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR3.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Sonata+Full'" alt="سوناتا فل كامل">
+                    <img class="car-image" src="CAR3.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/2563eb?text=Sonata+Full'" alt="سوناتا فل كامل">
                     <span class="car-badge">جديد</span>
                 </div>
                 <div class="car-info">
@@ -582,7 +582,7 @@
             <!-- 4 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR4.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Sonata+Mid'" alt="سوناتا نص فل">
+                    <img class="car-image" src="CAR4.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/2563eb?text=Sonata+Mid'" alt="سوناتا نص فل">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
@@ -597,7 +597,7 @@
             <!-- 5 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR5.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Sonata+Smart'" alt="سوناتا سمارت">
+                    <img class="car-image" src="CAR5.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/2563eb?text=Sonata+Smart'" alt="سوناتا سمارت">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
@@ -612,7 +612,7 @@
             <!-- 6 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR6.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Car+6'" alt="سيارة 6">
+                    <img class="car-image" src="CAR6.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/2563eb?text=Car+6'" alt="سيارة 6">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
@@ -627,7 +627,7 @@
             <!-- 7 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR7.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Car+7'" alt="سيارة 7">
+                    <img class="car-image" src="CAR7.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/2563eb?text=Car+7'" alt="سيارة 7">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
@@ -642,7 +642,7 @@
             <!-- 8 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR8.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Car+8'" alt="سيارة 8">
+                    <img class="car-image" src="CAR8.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/2563eb?text=Car+8'" alt="سيارة 8">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
@@ -657,7 +657,7 @@
             <!-- 9 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR9.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Car+9'" alt="سيارة 9">
+                    <img class="car-image" src="CAR9.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/2563eb?text=Car+9'" alt="سيارة 9">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
@@ -672,7 +672,7 @@
             <!-- 10 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR10.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Car+10'" alt="سيارة 10">
+                    <img class="car-image" src="CAR10.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/2563eb?text=Car+10'" alt="سيارة 10">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
@@ -687,7 +687,7 @@
             <!-- 11 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR11.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Car+11'" alt="سيارة 11">
+                    <img class="car-image" src="CAR11.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/2563eb?text=Car+11'" alt="سيارة 11">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
@@ -702,7 +702,7 @@
             <!-- 12 -->
             <div class="car-card reveal-element">
                 <div class="car-image-wrapper">
-                    <img class="car-image" src="CAR12.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/c5a059?text=Car+12'" alt="سيارة 12">
+                    <img class="car-image" src="CAR12.jpg" onerror="this.src='https://placehold.co/600x400/f4f6f9/2563eb?text=Car+12'" alt="سيارة 12">
                     <span class="car-badge">مستعمل</span>
                 </div>
                 <div class="car-info">
