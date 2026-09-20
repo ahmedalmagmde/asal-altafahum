@@ -734,7 +734,7 @@
         // دوال الواتساب ونموذج الاتصال
         function openWhatsApp(carInfo) {
             // تم تحديث رقم الواتساب الخاص بأزرار التواصل تحت السيارات
-            const phoneNumber = '966532316096';
+            const phoneNumber = '966531316096';
             const msg = encodeURIComponent(`مرحباً، أريد الاستفسار عن سيارة: ${carInfo}`);
             window.open(`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${msg}`, '_blank');
         }
@@ -757,7 +757,7 @@
             
             const msg = encodeURIComponent(`طلب استفسار جديد:\nالاسم: ${name}\nالجوال: ${phone}\nالسيارة: ${carModel}\nالرسالة: ${message}`);
             // تم تحديث رقم الواتساب الخاص بنموذج الاستفسار هنا أيضاً
-            window.open(`https://api.whatsapp.com/send?phone=966532316096&text=${msg}`, '_blank');
+            window.open(`https://api.whatsapp.com/send?phone=966531316096&text=${msg}`, '_blank');
             event.target.reset();
         }
     </script>
