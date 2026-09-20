@@ -51,7 +51,6 @@
             pointer-events: none;
         }
 
-        /* تخطيط الشريط العلوي للحاسب والأجهزة الكبيرة */
         nav {
             position: fixed;
             top: 0;
@@ -60,21 +59,39 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(15, 23, 42, 0.9);
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 1000;
             transition: all 0.4s ease;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--primary-blue);
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffffff;
             text-decoration: none;
-            letter-spacing: -0.5px;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--primary-blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: 900;
+            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4);
         }
 
         .nav-links {
@@ -92,33 +109,17 @@
             position: relative;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-blue);
-            transition: width 0.3s ease;
-        }
-
         .nav-links a:hover {
             color: var(--primary-blue);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
         }
 
         .menu-toggle {
             display: none;
             background: none;
             border: none;
-            color: var(--primary-blue);
+            color: #ffffff;
             font-size: 26px;
             cursor: pointer;
-            padding: 0;
         }
 
         .hero {
@@ -148,7 +149,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.45);
             backdrop-filter: blur(2px);
             z-index: -1;
         }
@@ -171,9 +172,6 @@
             font-weight: 900;
             color: var(--text-dark);
             margin-bottom: 15px;
-            animation: slideDown 1s ease forwards;
-            opacity: 0;
-            transform: translateY(-30px);
         }
 
         .hero-content h1 span {
@@ -184,9 +182,6 @@
             font-size: clamp(1rem, 2vw, 1.4rem);
             color: var(--text-gray);
             margin-bottom: 35px;
-            animation: slideUp 1s ease 0.3s forwards;
-            opacity: 0;
-            transform: translateY(30px);
             font-weight: 600;
         }
 
@@ -201,15 +196,12 @@
             font-family: 'Cairo', sans-serif;
             cursor: pointer;
             transition: all 0.3s ease;
-            animation: fadeIn 1s ease 0.6s forwards;
-            opacity: 0;
             box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
         }
 
         .btn-main:hover {
             transform: scale(1.03) translateY(-3px);
             background: var(--primary-blue-dark);
-            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.5);
         }
 
         .container {
@@ -262,24 +254,10 @@
             padding: 20px;
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            opacity: 0;
-            transform: translateY(40px);
             box-shadow: var(--shadow-soft);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-        }
-
-        .car-card.reveal {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .car-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(37, 99, 235, 0.4);
-            box-shadow: var(--shadow-hover);
         }
 
         .car-image-wrapper {
@@ -295,11 +273,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .car-card:hover .car-image {
-            transform: scale(1.08);
         }
 
         .car-badge {
@@ -312,13 +285,6 @@
             border-radius: 30px;
             font-size: 0.85rem;
             font-weight: 800;
-            border: 1px solid rgba(37, 99, 235, 0.3);
-            backdrop-filter: blur(5px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .car-info {
-            padding: 0 5px;
         }
 
         .car-year {
@@ -348,37 +314,22 @@
             font-family: 'Cairo', sans-serif;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
             font-size: 0.95rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
-            text-align: center;
         }
 
         .btn-whatsapp {
             background: #25d366;
             color: #fff;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
-        }
-
-        .btn-whatsapp:hover {
-            background: #20bd5a;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
         }
 
         .btn-inquiry {
             background: rgba(37, 99, 235, 0.1);
             color: var(--primary-blue-dark);
             border: 1px solid rgba(37, 99, 235, 0.3);
-        }
-
-        .btn-inquiry:hover {
-            background: var(--primary-blue);
-            color: #fff;
-            transform: translateY(-2px);
         }
 
         .contact-info-grid {
@@ -394,21 +345,7 @@
             border-radius: 24px;
             padding: 35px 25px;
             text-align: center;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(30px);
             box-shadow: var(--shadow-soft);
-        }
-
-        .contact-box.reveal {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .contact-box:hover {
-            transform: translateY(-6px);
-            border-color: var(--primary-blue);
-            box-shadow: var(--shadow-hover);
         }
 
         .contact-box h3 {
@@ -428,7 +365,6 @@
 
         .contact-box p {
             color: var(--text-gray);
-            line-height: 1.7;
             font-size: 1.05rem;
             font-weight: 600;
         }
@@ -438,16 +374,9 @@
             border: 1px solid var(--border-color);
             border-radius: 30px;
             padding: clamp(30px, 5vw, 60px);
-            opacity: 0;
-            transform: translateY(30px);
             box-shadow: var(--shadow-soft);
             max-width: 800px;
             margin: 0 auto;
-        }
-
-        .contact-form-section.reveal {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .form-group {
@@ -468,17 +397,7 @@
             background: var(--light-bg);
             border: 1px solid rgba(0,0,0,0.08);
             border-radius: 16px;
-            color: var(--text-dark);
             font-family: 'Cairo', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
         }
 
         footer {
@@ -488,53 +407,77 @@
             color: var(--text-gray);
             background: var(--white);
             font-weight: 600;
-            font-size: 0.95rem;
         }
 
-        @keyframes slideDown { to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { to { opacity: 1; } }
-
-        /* تصميم مخصص ومختلف تماماً لشاشات الجوال والتابلت (أقل من 992 بكسل) */
         @media (max-width: 992px) {
             nav {
-                padding: 10px 15px;
-                flex-direction: row-reverse; /* زر القائمة ☰ يمين واسم المعرض يساره مباشرة وبمسافة قصيرة */
-                justify-content: flex-start;
-                gap: 12px;
+                padding: 12px 20px;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .logo-container {
+                order: 1;
             }
 
             .menu-toggle {
-                display: block; /* إظهار زر الخطوط الثلاثة في الجوال */
+                display: block;
+                order: 2;
             }
 
             .logo {
-                font-size: 16px; /* حجم متناسق وصغير ليناسب جوال */
-                letter-spacing: -0.3px;
-                white-space: nowrap;
+                font-size: 17px;
+            }
+
+            .logo-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 12px;
             }
 
             .nav-links {
-                display: none; /* إخفاء الروابط التقليدية واظهارها بالقائمة المنسدلة */
+                display: none;
                 flex-direction: column;
                 position: absolute;
                 top: 100%;
                 right: 0;
                 width: 100%;
-                background: rgba(255, 255, 255, 0.98);
-                border-bottom: 1px solid var(--border-color);
-                padding: 20px 0;
-                text-align: center;
-                box-shadow: var(--shadow-soft);
-                gap: 18px;
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(15px);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 10px 0;
+                text-align: right;
+                box-shadow: 0 15px 30px rgba(0,0,0,0.3);
             }
 
             .nav-links.active {
                 display: flex;
             }
 
+            .nav-links li {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
             .nav-links a {
+                display: block;
+                padding: 16px 25px;
+                color: #ffffff;
                 font-size: 16px;
+                font-weight: 600;
+                transition: background 0.2s;
+            }
+
+            .nav-links a:hover {
+                background: rgba(255, 255, 255, 0.05);
+                color: var(--primary-blue);
+            }
+
+            .nav-links a::after {
+                display: none;
             }
         }
     </style>
@@ -544,8 +487,13 @@
     <div class="bg-glow"></div>
 
     <nav>
+        <div class="logo-container">
+            <a href="#" class="logo">معرض أصل التفاهم</a>
+            <div class="logo-icon">أ ت</div>
+        </div>
+
         <button class="menu-toggle" id="menuToggle" aria-label="قائمة التنقل">☰</button>
-        <a href="#" class="logo">معرض أصل التفاهم للسيارات</a>
+
         <ul class="nav-links" id="navLinks">
             <li><a href="#" onclick="closeMenu()">الرئيسية</a></li>
             <li><a href="#cars" onclick="closeMenu()">السيارات المتاحة</a></li>
@@ -567,11 +515,11 @@
     </div>
 
     <div class="container" id="cars">
-        <h2 class="section-title reveal-element">السيارات المتاحة</h2>
+        <h2 class="section-title">السيارات المتاحة</h2>
         
         <div class="cars-grid">
             <!-- 1 -->
-            <div class="car-card reveal-element">
+            <div class="car-card">
                 <div>
                     <div class="car-image-wrapper">
                         <img class="car-image" src="CAR1.jpg" alt="نيسان صني">
@@ -588,7 +536,7 @@
                 </div>
             </div>
             <!-- 2 -->
-            <div class="car-card reveal-element">
+            <div class="car-card">
                 <div>
                     <div class="car-image-wrapper">
                         <img class="car-image" src="CAR2.jpg" alt="هونداي توسان">
@@ -605,7 +553,7 @@
                 </div>
             </div>
             <!-- 3 -->
-            <div class="car-card reveal-element">
+            <div class="car-card">
                 <div>
                     <div class="car-image-wrapper">
                         <img class="car-image" src="CAR3.jpg" alt="هونداي النترا">
@@ -622,7 +570,7 @@
                 </div>
             </div>
             <!-- 4 -->
-            <div class="car-card reveal-element">
+            <div class="car-card">
                 <div>
                     <div class="car-image-wrapper">
                         <img class="car-image" src="CAR4.jpg" alt="هونداي اكسنت">
@@ -639,7 +587,7 @@
                 </div>
             </div>
             <!-- 5 -->
-            <div class="car-card reveal-element">
+            <div class="car-card">
                 <div>
                     <div class="car-image-wrapper">
                         <img class="car-image" src="CAR5.jpg" alt="تويوتا كامري">
@@ -656,7 +604,7 @@
                 </div>
             </div>
             <!-- 6 -->
-            <div class="car-card reveal-element">
+            <div class="car-card">
                 <div>
                     <div class="car-image-wrapper">
                         <img class="car-image" src="CAR6.jpg" alt="هوندا اكورد">
@@ -673,7 +621,7 @@
                 </div>
             </div>
             <!-- 7 -->
-            <div class="car-card reveal-element">
+            <div class="car-card">
                 <div>
                     <div class="car-image-wrapper">
                         <img class="car-image" src="CAR7.jpg" alt="تويوتا يارس">
@@ -690,7 +638,7 @@
                 </div>
             </div>
             <!-- 8 -->
-            <div class="car-card reveal-element">
+            <div class="car-card">
                 <div>
                     <div class="car-image-wrapper">
                         <img class="car-image" src="CAR8.jpg" alt="هونداي اكسنت">
@@ -707,7 +655,7 @@
                 </div>
             </div>
             <!-- 9 -->
-            <div class="car-card reveal-element">
+            <div class="car-card">
                 <div>
                     <div class="car-image-wrapper">
                         <img class="car-image" src="CAR9.jpg" alt="تويوتا كامري">
@@ -724,7 +672,7 @@
                 </div>
             </div>
             <!-- 10 -->
-            <div class="car-card reveal-element">
+            <div class="car-card">
                 <div>
                     <div class="car-image-wrapper">
                         <img class="car-image" src="CAR10.jpg" alt="هونداي اكسنت">
@@ -741,7 +689,7 @@
                 </div>
             </div>
             <!-- 11 -->
-            <div class="car-card reveal-element">
+            <div class="car-card">
                 <div>
                     <div class="car-image-wrapper">
                         <img class="car-image" src="CAR11.jpg" alt="تويوتا كامري">
@@ -758,7 +706,7 @@
                 </div>
             </div>
             <!-- 12 -->
-            <div class="car-card reveal-element">
+            <div class="car-card">
                 <div>
                     <div class="car-image-wrapper">
                         <img class="car-image" src="CAR12.jpg" alt="سيارة 12">
@@ -778,24 +726,24 @@
     </div>
 
     <div class="container" id="contact" style="padding-top: 30px;">
-        <h2 class="section-title reveal-element">تواصل معنا</h2>
+        <h2 class="section-title">تواصل معنا</h2>
         
         <div class="contact-info-grid">
-            <div class="contact-box reveal-element">
+            <div class="contact-box">
                 <h3><span>📱</span> الهاتف</h3>
                 <p>0558346440<br>0531316096</p>
             </div>
-            <div class="contact-box reveal-element">
+            <div class="contact-box">
                 <h3><span>📍</span> الموقع</h3>
                 <p>محايل عسير<br>طريق خميس البحر</p>
             </div>
-            <div class="contact-box reveal-element">
+            <div class="contact-box">
                 <h3><span>🕐</span> ساعات العمل</h3>
                 <p>من 7 صباحاً إلى 8 مساءً<br>يومياً</p>
             </div>
         </div>
 
-        <div class="contact-form-section reveal-element" id="inquiry">
+        <div class="contact-form-section" id="inquiry">
             <h3 style="text-align: center; color: var(--text-dark); margin-bottom: 30px; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800;">استفسر عن السيارة</h3>
             <form onsubmit="handleSubmit(event)">
                 <div class="form-group">
@@ -824,6 +772,14 @@
     </footer>
 
     <script>
+        // العودة إلى أعلى الصفحة عند إعادة التحميل أو التحديث
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        };
+        window.onload = function () {
+            window.scrollTo(0, 0);
+        };
+
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
 
@@ -838,24 +794,6 @@
                 navLinks.classList.remove('active');
             }
         }
-
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal-element').forEach(el => {
-            observer.observe(el);
-        });
 
         function openWhatsApp(carInfo) {
             const phoneNumber = '966531316096';
