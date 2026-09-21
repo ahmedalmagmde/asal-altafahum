@@ -68,9 +68,11 @@ nav{
 }
 .btn-main:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 17px 35px rgba(37,99,235,.35)}
 .hero-social{display:flex;justify-content:center;gap:10px;margin-top:15px;flex-wrap:wrap}
-.social-btn{padding:9px 16px;border-radius:12px;font-size:13px;font-weight:800;background:#fff;border:1px solid var(--line);transition:.3s}
+.social-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:12px;font-size:13px;font-weight:800;background:#fff;border:1px solid var(--line);transition:.3s}
 .social-btn:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.social-icon {width: 18px; height: 18px; object-fit: contain; border-radius: 4px;}
 .snap{background:#fffde1;border-color:#eee36b}
+.tiktok{background:#f0f9ff;border-color:#bae6fd}
 
 /* SECTIONS */
 .container{width:min(1180px,92%);margin:auto;padding:95px 0}
@@ -97,7 +99,6 @@ nav{
   color:#1e3a8a;padding:5px 13px;border-radius:999px;font-size:11px;font-weight:800;
   box-shadow:0 6px 15px rgba(0,0,0,.08)
 }
-        /* تنسيق علامة تم البيع الحمراء */
 .car-badge-sold {
   position: absolute;
   top: 12px;
@@ -135,11 +136,12 @@ nav{
 }
 .contact-box:hover::before{transform:translateX(100%)}
 .contact-box:hover{transform:translateY(-9px)!important;box-shadow:0 25px 55px rgba(37,99,235,.13)}
-.contact-box h3{font-size:1.35rem;margin-bottom:12px;font-weight:900}
-.contact-box h3 span{display:block;font-size:2.2rem;margin-bottom:8px;animation:iconFloat 3s ease-in-out infinite}
+.contact-box h3{font-size:1.35rem;margin-bottom:12px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:8px}
+.contact-box h3 img{width:36px;height:36px;object-fit:contain;border-radius:8px;}
 .contact-box p{color:var(--muted);font-size:1rem;font-weight:600}
 .contact-box a{color:var(--blue);font-weight:800}
 .snap-contact{background:linear-gradient(145deg,#fff,#fffef0);border-color:#eee58b}
+.tiktok-contact{background:linear-gradient(145deg,#fff,#f0f9ff);border-color:#bae6fd}
 
 /* FORM */
 .contact-form-section{
@@ -162,9 +164,10 @@ nav{
 footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1px solid var(--line);font-size:13px}
 .snap-float{
   position:fixed;left:18px;bottom:18px;width:57px;height:57px;border-radius:18px;
-  background:#fffc00;color:#111;display:grid;place-items:center;font-size:28px;z-index:999;
+  background:#fffc00;color:#111;display:grid;place-items:center;z-index:999;
   box-shadow:0 10px 30px rgba(160,150,0,.25);animation:float 3s ease-in-out infinite;
 }
+.snap-float img{width:36px;height:36px;object-fit:contain;}
 .top-btn{
   position:fixed;right:18px;bottom:18px;width:45px;height:45px;border-radius:14px;
   border:1px solid var(--line);background:#fff;color:var(--blue);font-size:20px;cursor:pointer;
@@ -181,7 +184,6 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
 
 @keyframes heroIn{from{opacity:0;transform:translateY(30px) scale(.98)}to{opacity:1;transform:none}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-@keyframes iconFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 
 @media(max-width:900px){
   .cars-grid{grid-template-columns:repeat(2,1fr)}
@@ -219,7 +221,8 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
             <li><a href="#cars" onclick="closeMenu()">السيارات المتاحة</a></li>
             <li><a href="#contact" onclick="closeMenu()">معلومات التواصل</a></li>
             <li><a href="#inquiry" onclick="closeMenu()">نموذج الاستفسار</a></li>
-            <li><a href="https://snapchat.com/t/KZPCpwgy" target="_blank" rel="noopener">سناب شات 👻</a></li>
+            <li><a href="https://snapchat.com/t/KZPCpwgy" target="_blank" rel="noopener">سناب شات</a></li>
+            <li><a href="https://www.tiktok.com/@altafpmm2xg?_r=1&_t=ZS-99ueSw8OCQP" target="_blank" rel="noopener">تيك توك</a></li>
         </ul>
     </nav>
 
@@ -227,7 +230,6 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="./video.mp4" type="video/mp4">
         </video>
-        <!-- تم حذف الشاشة الشفافة هنا نهائياً -->
         <div class="video-loading" id="videoLoading">جاري تشغيل الفيديو...</div>
         <div class="hero-content">
             <h1>معرض <span>أصل التفاهم</span></h1>
@@ -235,7 +237,8 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
             <button class="btn-main" onclick="document.getElementById('cars').scrollIntoView({behavior: 'smooth'})">استعرض السيارات ↓</button>
             <div class="hero-social">
                 <a class="social-btn" href="https://api.whatsapp.com/send?phone=966537973083" target="_blank" rel="noopener">واتساب 💬</a>
-                <a class="social-btn snap" href="https://snapchat.com/t/KZPCpwgy" target="_blank" rel="noopener">سناب شات 👻</a>
+                <a class="social-btn snap" href="https://snapchat.com/t/KZPCpwgy" target="_blank" rel="noopener"><img src="snap-icon.png" class="social-icon" alt="سناب"> سناب شات</a>
+                <a class="social-btn tiktok" href="https://www.tiktok.com/@altafpmm2xg?_r=1&_t=ZS-99ueSw8OCQP" target="_blank" rel="noopener"><img src="tiktok-icon.png" class="social-icon" alt="تيك توك"> تيك توك</a>
             </div>
         </div>
     </div>
@@ -468,8 +471,12 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
                 <p>من 7 صباحاً إلى 8 مساءً<br>يومياً</p>
             </div>
             <div class="contact-box snap-contact">
-                <h3><span>👻</span> سناب شات</h3>
+                <h3><img src="snap-icon.png" alt="سناب شات"> سناب شات</h3>
                 <p><a href="https://snapchat.com/t/KZPCpwgy" target="_blank" rel="noopener">تابعنا على سناب شات</a><br>شاهد أحدث السيارات والعروض</p>
+            </div>
+            <div class="contact-box tiktok-contact">
+                <h3><img src="tiktok-icon.png" alt="تيك توك"> تيك توك</h3>
+                <p><a href="https://www.tiktok.com/@altafpmm2xg?_r=1&_t=ZS-99ueSw8OCQP" target="_blank" rel="noopener">تابعنا على تيك توك</a><br>شاهد الفيديوهات والتغطيات</p>
             </div>
         </div>
 
@@ -497,7 +504,7 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
         </div>
     </div>
 
-    <a class="snap-float" href="https://snapchat.com/t/KZPCpwgy" target="_blank" rel="noopener" aria-label="سناب شات">👻</a>
+    <a class="snap-float" href="https://snapchat.com/t/KZPCpwgy" target="_blank" rel="noopener" aria-label="سناب شات"><img src="snap-icon.png" alt="سناب شات"></a>
     <button class="top-btn" id="topBtn" aria-label="العودة للأعلى">↑</button>
 
     <footer>
