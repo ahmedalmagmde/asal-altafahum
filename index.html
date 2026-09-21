@@ -51,10 +51,6 @@ nav{
   object-fit:cover!important;z-index:-3!important;display:block!important;
   background:#0c1420;
 }
-.hero-overlay{
-  position:absolute;inset:0;z-index:-2;
-  background:linear-gradient(180deg,rgba(255,255,255,.58),rgba(244,247,251,.78));
-}
 .hero-content{
   width:min(850px,100%);padding:44px 35px;border-radius:30px;
   background:rgba(255,255,255,.74);border:1px solid rgba(255,255,255,.8);
@@ -217,7 +213,7 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="./video.mp4" type="video/mp4">
         </video>
-        <div class="hero-overlay"></div>
+        <!-- تم حذف الشاشة الشفافة هنا نهائياً -->
         <div class="video-loading" id="videoLoading">جاري تشغيل الفيديو...</div>
         <div class="hero-content">
             <h1>معرض <span>أصل التفاهم</span></h1>
@@ -495,7 +491,6 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
     </footer>
 
     <script>
-        // تشغيل فيديو الخلفية بشكل موثوق: muted + playsinline + محاولة play بعد تحميل الصفحة.
         const heroVideo = document.querySelector('.hero-video');
         const videoLoading = document.getElementById('videoLoading');
 
@@ -509,7 +504,6 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
                 playPromise.then(() => {
                     if (videoLoading) videoLoading.classList.remove('show');
                 }).catch(() => {
-                    // بعض المتصفحات تؤخر التشغيل التلقائي حتى أول تفاعل.
                     if (videoLoading) videoLoading.classList.add('show');
                 });
             }
@@ -530,7 +524,6 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
             });
         }
 
-        // منع حفظ مكان التمرير والعودة لأول الصفحة فوراً عند التحديث
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
@@ -543,7 +536,6 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
             window.scrollTo(0, 0);
         });
 
-        // تفعيل انميشن الظهور عند التمرير (Scroll Reveal)
         const observerOptions = {
             threshold: 0.1,
             rootMargin: "0px 0px -50px 0px"
