@@ -7,516 +7,193 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+:root{
+  --blue:#2563eb;--blue2:#3b82f6;--dark:#18212b;--muted:#68737d;
+  --bg:#f4f7fb;--white:#fff;--line:#dce7f7;
+  --shadow:0 18px 45px rgba(28,55,90,.09);
+}
+html,body{width:100%;overflow-x:hidden}
+body{
+  font-family:'Cairo',sans-serif;color:var(--dark);
+  background:
+    radial-gradient(circle at 10% 15%,rgba(37,99,235,.08),transparent 28%),
+    radial-gradient(circle at 90% 40%,rgba(96,165,250,.08),transparent 30%),
+    var(--bg);
+  line-height:1.6;
+}
+a{text-decoration:none;color:inherit}
+button,input,textarea{font-family:inherit}
+.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 50% 0,rgba(255,255,255,.9),transparent 45%)}
 
-        :root {
-            --primary-blue: #2563eb;
-            --primary-blue-dark: #1e3a8a;
-            --light-bg: #f4f6f9;
-            --white: #ffffff;
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --text-dark: #2d3436;
-            --text-gray: #636e72;
-            --border-color: rgba(37, 99, 235, 0.15);
-            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.04);
-            --shadow-hover: 0 20px 40px rgba(37, 99, 235, 0.12);
-            --glass-blur: blur(16px);
-        }
+/* NAV */
+nav{
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);
+  width:min(1180px,94%);padding:12px 18px;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(255,255,255,.78);backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);border:1px solid rgba(37,99,235,.12);
+  border-radius:18px;box-shadow:0 12px 35px rgba(25,55,90,.08);
+}
+.logo{font-size:20px;font-weight:900;color:var(--blue)}
+.nav-links{display:flex;gap:7px;list-style:none}
+.nav-links a{display:block;padding:9px 14px;border-radius:10px;font-size:14px;font-weight:700;transition:.3s}
+.nav-links a:hover{background:#edf4ff;color:var(--blue)}
+.menu-toggle{display:none;border:0;background:none;color:var(--blue);font-size:28px;cursor:pointer}
 
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: var(--light-bg);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-            -webkit-text-size-adjust: 100%;
-        }
+/* HERO */
+.hero{
+  min-height:100svh;position:relative;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:110px 20px 70px;overflow:hidden;
+}
+.hero-video{
+  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+  object-fit:cover!important;z-index:-3!important;display:block!important;
+  background:#0c1420;
+}
+.hero-overlay{
+  position:absolute;inset:0;z-index:-2;
+  background:linear-gradient(180deg,rgba(255,255,255,.58),rgba(244,247,251,.78));
+}
+.hero-content{
+  width:min(850px,100%);padding:44px 35px;border-radius:30px;
+  background:rgba(255,255,255,.74);border:1px solid rgba(255,255,255,.8);
+  box-shadow:0 25px 70px rgba(20,45,80,.16);backdrop-filter:blur(12px);
+  animation:heroIn .9s ease both;
+}
+.hero h1{font-size:clamp(2.7rem,6vw,5rem);font-weight:900;line-height:1.1;margin-bottom:14px}
+.hero h1 span{color:var(--blue)}
+.hero p{font-size:clamp(1rem,2vw,1.3rem);color:var(--muted);font-weight:600;margin-bottom:28px}
+.btn-main{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 28px;border:0;border-radius:14px;background:linear-gradient(135deg,var(--blue),#1d4ed8);
+  color:#fff;font-size:1rem;font-weight:800;cursor:pointer;
+  box-shadow:0 10px 25px rgba(37,99,235,.25);transition:.35s;
+}
+.btn-main:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 17px 35px rgba(37,99,235,.35)}
+.hero-social{display:flex;justify-content:center;gap:10px;margin-top:15px;flex-wrap:wrap}
+.social-btn{padding:9px 16px;border-radius:12px;font-size:13px;font-weight:800;background:#fff;border:1px solid var(--line);transition:.3s}
+.social-btn:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.snap{background:#fffde1;border-color:#eee36b}
 
-        .bg-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: 
-                radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.05), transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(0, 86, 179, 0.03), transparent 50%);
-            z-index: -1;
-            pointer-events: none;
-        }
+/* SECTIONS */
+.container{width:min(1180px,92%);margin:auto;padding:95px 0}
+.section-title{text-align:center;font-size:clamp(2rem,4vw,3rem);font-weight:900;margin-bottom:55px}
+.section-title::after{content:"";display:block;width:62px;height:4px;border-radius:10px;background:var(--blue);margin:13px auto 0}
 
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-        }
+/* CARS */
+.cars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.car-card,.contact-box,.contact-form-section{
+  opacity:0;transform:translateY(42px) scale(.98);
+  transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s;
+}
+.car-card.reveal,.contact-box.reveal,.contact-form-section.reveal{opacity:1;transform:none}
+.car-card{
+  background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:24px;
+  padding:14px;box-shadow:var(--shadow);overflow:hidden;
+}
+.car-card:hover{transform:translateY(-10px)!important;border-color:rgba(37,99,235,.3);box-shadow:0 25px 55px rgba(37,99,235,.13)}
+.car-image-wrapper{height:235px;position:relative;overflow:hidden;border-radius:18px;background:#eef3f9}
+.car-image{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s ease}
+.car-card:hover .car-image{transform:scale(1.08)}
+.car-badge{
+  position:absolute;top:12px;right:12px;background:rgba(255,255,255,.93);
+  color:#1e3a8a;padding:5px 13px;border-radius:999px;font-size:11px;font-weight:800;
+  box-shadow:0 6px 15px rgba(0,0,0,.08)
+}
+.car-info{padding:16px 4px 12px}
+.car-year{font-size:12px;color:#8a949e;margin-bottom:3px;font-weight:700}
+.car-title{font-size:21px;font-weight:900}
+.button-group{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.btn-card{border:0;border-radius:12px;padding:11px;cursor:pointer;font-weight:800;transition:.3s}
+.btn-whatsapp{background:#25d366;color:#fff}
+.btn-whatsapp:hover{background:#20bd5a;transform:translateY(-2px)}
+.btn-inquiry{background:#edf4ff;color:#1e40af;border:1px solid #d6e5ff}
+.btn-inquiry:hover{background:var(--blue);color:#fff;transform:translateY(-2px)}
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+/* CONTACT */
+.contact-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-bottom:50px}
+.contact-box{
+  position:relative;background:rgba(255,255,255,.92);border:1px solid var(--line);
+  border-radius:24px;padding:34px 25px;text-align:center;box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.contact-box::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,transparent,var(--blue),transparent);
+  transform:translateX(-100%);transition:.6s;
+}
+.contact-box:hover::before{transform:translateX(100%)}
+.contact-box:hover{transform:translateY(-9px)!important;box-shadow:0 25px 55px rgba(37,99,235,.13)}
+.contact-box h3{font-size:1.35rem;margin-bottom:12px;font-weight:900}
+.contact-box h3 span{display:block;font-size:2.2rem;margin-bottom:8px;animation:iconFloat 3s ease-in-out infinite}
+.contact-box p{color:var(--muted);font-size:1rem;font-weight:600}
+.contact-box a{color:var(--blue);font-weight:800}
+.snap-contact{background:linear-gradient(145deg,#fff,#fffef0);border-color:#eee58b}
 
-        .logo {
-            font-size: 22px;
-            font-weight: 900;
-            color: var(--primary-blue);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
+/* FORM */
+.contact-form-section{
+  background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:28px;
+  padding:45px;box-shadow:var(--shadow);max-width:820px;margin:auto;
+}
+.contact-form-section h3{text-align:center;color:var(--dark);margin-bottom:28px;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:900}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;margin-bottom:8px;font-weight:800;font-size:13px}
+.form-group input,.form-group textarea{
+  width:100%;padding:14px 15px;background:#f7f9fc;border:1px solid #dfe6ef;
+  border-radius:13px;font-size:14px;outline:none;transition:.3s;
+}
+.form-group input:focus,.form-group textarea:focus{
+  border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(37,99,235,.08)
+}
+.form-submit{width:100%;margin-top:5px}
 
-        .nav-links {
-            display: flex;
-            gap: 35px;
-            list-style: none;
-        }
+/* FOOTER + FLOATING */
+footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1px solid var(--line);font-size:13px}
+.snap-float{
+  position:fixed;left:18px;bottom:18px;width:57px;height:57px;border-radius:18px;
+  background:#fffc00;color:#111;display:grid;place-items:center;font-size:28px;z-index:999;
+  box-shadow:0 10px 30px rgba(160,150,0,.25);animation:float 3s ease-in-out infinite;
+}
+.top-btn{
+  position:fixed;right:18px;bottom:18px;width:45px;height:45px;border-radius:14px;
+  border:1px solid var(--line);background:#fff;color:var(--blue);font-size:20px;cursor:pointer;
+  opacity:0;pointer-events:none;transition:.3s;z-index:999;box-shadow:var(--shadow)
+}
+.top-btn.show{opacity:1;pointer-events:auto}
 
-        .nav-links a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 16px;
-            transition: color 0.3s;
-            position: relative;
-        }
+/* VIDEO FALLBACK / LOADING */
+.video-loading{
+  position:absolute;z-index:-1;inset:0;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(135deg,#172033,#0d1524);font-size:13px;opacity:0;transition:.3s;
+}
+.video-loading.show{opacity:1}
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-blue);
-            transition: width 0.3s ease;
-        }
+@keyframes heroIn{from{opacity:0;transform:translateY(30px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes iconFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 
-        .nav-links a:hover {
-            color: var(--primary-blue);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--primary-blue);
-            font-size: 28px;
-            cursor: pointer;
-            z-index: 1100;
-        }
-
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            padding: 0 20px;
-            overflow: hidden;
-        }
-
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -2;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(2px);
-            z-index: -1;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            background: rgba(255, 255, 255, 0.75);
-            padding: 50px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            margin: 0 15px;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: 900;
-            color: var(--text-dark);
-            margin-bottom: 15px;
-            animation: slideDown 1s ease forwards;
-            opacity: 0;
-            transform: translateY(-30px);
-        }
-
-        .hero-content h1 span {
-            color: var(--primary-blue);
-        }
-
-        .hero-content p {
-            font-size: clamp(1rem, 2vw, 1.4rem);
-            color: var(--text-gray);
-            margin-bottom: 40px;
-            animation: slideUp 1s ease 0.3s forwards;
-            opacity: 0;
-            transform: translateY(30px);
-            font-weight: 600;
-        }
-
-        .btn-main {
-            padding: 16px 45px;
-            background: var(--primary-blue);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 800;
-            font-family: 'Cairo', sans-serif;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            animation: fadeIn 1s ease 0.6s forwards;
-            opacity: 0;
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
-        }
-
-        .btn-main:hover {
-            transform: scale(1.03) translateY(-3px);
-            background: var(--primary-blue-dark);
-            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.5);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 100px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: var(--text-dark);
-            margin-bottom: 70px;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--primary-blue);
-            margin: 15px auto 0;
-            border-radius: 4px;
-        }
-
-        .cars-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .car-card, .contact-box, .contact-form-section, .reveal-element {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .car-card.reveal, .contact-box.reveal, .contact-form-section.reveal, .reveal-element.reveal {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .car-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 20px;
-            backdrop-filter: var(--glass-blur);
-            box-shadow: var(--shadow-soft);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .car-card:hover {
-            transform: translateY(-12px);
-            border-color: rgba(37, 99, 235, 0.4);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .car-image-wrapper {
-            position: relative;
-            border-radius: 18px;
-            overflow: hidden;
-            height: 240px;
-            margin-bottom: 25px;
-            background: #fff;
-        }
-
-        .car-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .car-card:hover .car-image {
-            transform: scale(1.08);
-        }
-
-        .car-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--primary-blue-dark);
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 800;
-        }
-
-        .car-year {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .car-title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            margin-bottom: 25px;
-            color: var(--text-dark);
-        }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn-card {
-            flex: 1;
-            padding: 12px;
-            border-radius: 14px;
-            border: none;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 1.05rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-whatsapp {
-            background: #25d366;
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
-        }
-
-        .btn-whatsapp:hover {
-            background: #20bd5a;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
-        }
-
-        .btn-inquiry {
-            background: rgba(37, 99, 235, 0.1);
-            color: var(--primary-blue-dark);
-            border: 1px solid rgba(37, 99, 235, 0.3);
-        }
-
-        .btn-inquiry:hover {
-            background: var(--primary-blue);
-            color: #fff;
-            transform: translateY(-2px);
-        }
-
-        .contact-info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .contact-box {
-            background: var(--white);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: var(--shadow-soft);
-            text-decoration: none;
-            display: block;
-            transition: all 0.3s ease;
-        }
-
-        .contact-box:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary-blue);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .contact-box h3 {
-            color: var(--text-dark);
-            margin-bottom: 15px;
-            font-size: 1.6rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .contact-box h3 span {
-            font-size: 2rem;
-            color: var(--primary-blue);
-        }
-
-        .contact-box p {
-            color: var(--text-gray);
-            font-size: 1.15rem;
-            font-weight: 600;
-        }
-
-        .contact-form-section {
-            background: var(--white);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            padding: 60px;
-            box-shadow: var(--shadow-soft);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 16px;
-            background: var(--light-bg);
-            border: 1px solid rgba(0,0,0,0.08);
-            border-radius: 16px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-gray);
-            background: var(--white);
-            font-weight: 600;
-        }
-
-        @keyframes slideDown { to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { to { opacity: 1; } }
-
-        @media (max-width: 992px) {
-            nav {
-                padding: 12px 20px;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .logo {
-                font-size: 18px;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                right: 0;
-                width: 100%;
-                background: #ffffff;
-                border-bottom: 1px solid var(--border-color);
-                padding: 15px 0;
-                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-                text-align: right;
-                z-index: 1080;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                border-bottom: 1px solid #f0f0f0;
-            }
-
-            .nav-links li:last-child {
-                border-bottom: none;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 15px 25px;
-                font-size: 17px;
-                color: var(--text-dark);
-            }
-
-            .nav-links a::after {
-                display: none;
-            }
-        }
-    </style>
+@media(max-width:900px){
+  .cars-grid{grid-template-columns:repeat(2,1fr)}
+  .contact-info-grid{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  nav{top:8px}
+  .menu-toggle{display:block}
+  .nav-links{
+    display:none;position:absolute;top:62px;right:0;width:100%;background:#fff;
+    border:1px solid var(--line);border-radius:16px;padding:8px;box-shadow:var(--shadow);
+    flex-direction:column
+  }
+  .nav-links.active{display:flex}
+  .nav-links a{text-align:center;width:100%}
+  .hero-content{padding:34px 20px}
+  .hero h1{font-size:clamp(2.5rem,13vw,4rem)}
+  .cars-grid{grid-template-columns:1fr}
+  .contact-form-section{padding:28px 20px}
+  .container{padding:75px 0}
+}
+</style>
 </head>
 <body>
 
@@ -532,6 +209,7 @@
             <li><a href="#cars" onclick="closeMenu()">السيارات المتاحة</a></li>
             <li><a href="#contact" onclick="closeMenu()">معلومات التواصل</a></li>
             <li><a href="#inquiry" onclick="closeMenu()">نموذج الاستفسار</a></li>
+            <li><a href="https://snapchat.com/t/KZPCpwgy" target="_blank" rel="noopener">سناب شات 👻</a></li>
         </ul>
     </nav>
 
@@ -540,10 +218,15 @@
             <source src="./video.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
+        <div class="video-loading" id="videoLoading">جاري تشغيل الفيديو...</div>
         <div class="hero-content">
             <h1>معرض <span>أصل التفاهم</span></h1>
-            <p>تجربة شراء السيارات من نوع آخر</p>
-            <button class="btn-main" onclick="document.getElementById('cars').scrollIntoView({behavior: 'smooth'})">استعرض السيارات</button>
+            <p>تجربة شراء السيارات من نوع آخر — تصميم متحرك وعصري مع تواصل مباشر.</p>
+            <button class="btn-main" onclick="document.getElementById('cars').scrollIntoView({behavior: 'smooth'})">استعرض السيارات ↓</button>
+            <div class="hero-social">
+                <a class="social-btn" href="https://api.whatsapp.com/send?phone=966537973083" target="_blank" rel="noopener">واتساب 💬</a>
+                <a class="social-btn snap" href="https://snapchat.com/t/KZPCpwgy" target="_blank" rel="noopener">سناب شات 👻</a>
+            </div>
         </div>
     </div>
 
@@ -774,11 +457,10 @@
                 <h3><span>🕐</span> ساعات العمل</h3>
                 <p>من 7 صباحاً إلى 8 مساءً<br>يومياً</p>
             </div>
-            <!-- خانة سناب شات الجديدة -->
-            <a href="https://snapchat.com/t/KZPCpwgy" target="_blank" class="contact-box">
+            <div class="contact-box snap-contact">
                 <h3><span>👻</span> سناب شات</h3>
-                <p>اضغط للإضافة والمتابعة</p>
-            </a>
+                <p><a href="https://snapchat.com/t/KZPCpwgy" target="_blank" rel="noopener">تابعنا على سناب شات</a><br>شاهد أحدث السيارات والعروض</p>
+            </div>
         </div>
 
         <div class="contact-form-section" id="inquiry">
@@ -805,11 +487,50 @@
         </div>
     </div>
 
+    <a class="snap-float" href="https://snapchat.com/t/KZPCpwgy" target="_blank" rel="noopener" aria-label="سناب شات">👻</a>
+    <button class="top-btn" id="topBtn" aria-label="العودة للأعلى">↑</button>
+
     <footer>
         <p>© 2026 معرض أصل التفاهم للسيارات. جميع الحقوق محفوظة</p>
     </footer>
 
     <script>
+        // تشغيل فيديو الخلفية بشكل موثوق: muted + playsinline + محاولة play بعد تحميل الصفحة.
+        const heroVideo = document.querySelector('.hero-video');
+        const videoLoading = document.getElementById('videoLoading');
+
+        function startHeroVideo() {
+            if (!heroVideo) return;
+            heroVideo.muted = true;
+            heroVideo.setAttribute('muted', '');
+            heroVideo.setAttribute('playsinline', '');
+            const playPromise = heroVideo.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    if (videoLoading) videoLoading.classList.remove('show');
+                }).catch(() => {
+                    // بعض المتصفحات تؤخر التشغيل التلقائي حتى أول تفاعل.
+                    if (videoLoading) videoLoading.classList.add('show');
+                });
+            }
+        }
+
+        if (heroVideo) {
+            heroVideo.addEventListener('loadeddata', startHeroVideo);
+            heroVideo.addEventListener('canplay', startHeroVideo);
+            heroVideo.addEventListener('error', () => {
+                if (videoLoading) {
+                    videoLoading.textContent = 'تعذر تحميل video.mp4 — تأكد أن الفيديو موجود في نفس مجلد index.html';
+                    videoLoading.classList.add('show');
+                }
+            });
+            window.addEventListener('load', startHeroVideo);
+            ['touchstart','click','pointerdown'].forEach(evt => {
+                document.addEventListener(evt, startHeroVideo, {once:true, passive:true});
+            });
+        }
+
+        // منع حفظ مكان التمرير والعودة لأول الصفحة فوراً عند التحديث
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
@@ -822,6 +543,7 @@
             window.scrollTo(0, 0);
         });
 
+        // تفعيل انميشن الظهور عند التمرير (Scroll Reveal)
         const observerOptions = {
             threshold: 0.1,
             rootMargin: "0px 0px -50px 0px"
@@ -880,6 +602,14 @@
                 const nameInput = document.getElementById('name');
                 if(nameInput) nameInput.focus();
             }, 800);
+        }
+
+        const topBtn = document.getElementById('topBtn');
+        window.addEventListener('scroll', () => {
+            if (topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+        });
+        if (topBtn) {
+            topBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
         }
 
         function handleSubmit(event) {
