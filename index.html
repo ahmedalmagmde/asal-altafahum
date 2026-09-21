@@ -860,7 +860,7 @@
         }
 
         function openWhatsApp(carInfo) {
-            const phoneNumber = '966531316096';
+            const phoneNumber = '966537973083';
             const msg = encodeURIComponent(`مرحباً، أريد الاستفسار عن سيارة: ${carInfo}`);
             window.open(`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${msg}`, '_blank');
         }
@@ -885,7 +885,7 @@
             const message = document.getElementById('message').value;
             
             const msg = encodeURIComponent(`طلب استفسار جديد:\nالاسم: ${name}\nالجوال: ${phone}\nالسيارة: ${carModel}\nالرسالة: ${message}`);
-            window.open(`https://api.whatsapp.com/send?phone=966531316096&text=${msg}`, '_blank');
+            window.open(`https://api.whatsapp.com/send?phone=966537973083&text=${msg}`, '_blank');
             event.target.reset();
         }
     </script>
