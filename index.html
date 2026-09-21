@@ -77,7 +77,7 @@ nav{
 .section-title{text-align:center;font-size:clamp(2rem,4vw,3rem);font-weight:900;margin-bottom:55px}
 .section-title::after{content:"";display:block;width:62px;height:4px;border-radius:10px;background:var(--blue);margin:13px auto 0}
 
-/* CARS */
+/* CARS & SLIDER */
 .cars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .car-card,.contact-box,.contact-form-section{
   opacity:0;transform:translateY(42px) scale(.98);
@@ -89,13 +89,30 @@ nav{
   padding:14px;box-shadow:var(--shadow);overflow:hidden;
 }
 .car-card:hover{transform:translateY(-10px)!important;border-color:rgba(37,99,235,.3);box-shadow:0 25px 55px rgba(37,99,235,.13)}
-.car-image-wrapper{height:235px;position:relative;overflow:hidden;border-radius:18px;background:#eef3f9}
-.car-image{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s ease}
-.car-card:hover .car-image{transform:scale(1.08)}
+
+/* Slider Styles */
+.car-slider{position:relative;width:100%;height:235px;overflow:hidden;border-radius:18px;background:#eef3f9}
+.car-slides{display:flex;width:100%;height:100%;transition:transform 0.4s ease-in-out;}
+.car-slides img{width:100%;height:100%;object-fit:cover;flex-shrink:0;}
+.slider-btn{
+  position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);
+  color:white;border:none;padding:6px 10px;cursor:pointer;border-radius:50%;
+  font-size:14px;z-index:2;transition:0.3s;
+}
+.slider-btn:hover{background:rgba(0,0,0,0.7);}
+.prev-btn{right:10px;}
+.next-btn{left:10px;}
+.slider-dots{
+  position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+  display:flex;gap:5px;z-index:2;
+}
+.dot{width:7px;height:7px;background:rgba(255,255,255,0.5);border-radius:50%;cursor:pointer;transition:0.3s;}
+.dot.active{background:white;width:18px;border-radius:4px;}
+
 .car-badge{
   position:absolute;top:12px;right:12px;background:rgba(255,255,255,.93);
   color:#1e3a8a;padding:5px 13px;border-radius:999px;font-size:11px;font-weight:800;
-  box-shadow:0 6px 15px rgba(0,0,0,.08)
+  box-shadow:0 6px 15px rgba(0,0,0,.08);z-index:3;
 }
 .car-info{padding:16px 4px 12px}
 .car-year{font-size:12px;color:#8a949e;margin-bottom:3px;font-weight:700}
@@ -213,11 +230,10 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="./video.mp4" type="video/mp4">
         </video>
-        <!-- تم حذف الشاشة الشفافة هنا نهائياً -->
         <div class="video-loading" id="videoLoading">جاري تشغيل الفيديو...</div>
         <div class="hero-content">
             <h1>معرض <span>أصل التفاهم</span></h1>
-            <p>تجربة شراء السيارات من نوع آخر</p>
+            <p>تجربة شراء السيارات من نوع آخر — تصميم متحرك وعصري مع تواصل مباشر.</p>
             <button class="btn-main" onclick="document.getElementById('cars').scrollIntoView({behavior: 'smooth'})">استعرض السيارات ↓</button>
             <div class="hero-social">
                 <a class="social-btn" href="https://api.whatsapp.com/send?phone=966537973083" target="_blank" rel="noopener">واتساب 💬</a>
@@ -230,11 +246,24 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
         <h2 class="section-title reveal-element">السيارات المتاحة</h2>
         
         <div class="cars-grid">
-            <!-- 1 -->
+            <!-- سيارة 1 -->
             <div class="car-card">
                 <div>
-                    <div class="car-image-wrapper">
-                        <img class="car-image" src="CAR1.jpg" alt="نيسان صني">
+                    <div class="car-slider" id="slider1">
+                        <div class="car-slides">
+                            <img src="CAR1_1.jpg" alt="صورة 1">
+                            <img src="CAR1_2.jpg" alt="صورة 2">
+                            <img src="CAR1_3.jpg" alt="صورة 3">
+                            <img src="CAR1_4.jpg" alt="صورة 4">
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="moveSlide('slider1', -1)">❮</button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('slider1', 1)">❯</button>
+                        <div class="slider-dots">
+                            <span class="dot active" onclick="currentSlide('slider1', 0)"></span>
+                            <span class="dot" onclick="currentSlide('slider1', 1)"></span>
+                            <span class="dot" onclick="currentSlide('slider1', 2)"></span>
+                            <span class="dot" onclick="currentSlide('slider1', 3)"></span>
+                        </div>
                         <span class="car-badge">مستعمل</span>
                     </div>
                     <div class="car-info">
@@ -247,11 +276,25 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
                     <button class="btn-card btn-inquiry" onclick="scrollToInquiry('نيسان صني')">استفسار 📝</button>
                 </div>
             </div>
-            <!-- 2 -->
+
+            <!-- سيارة 2 -->
             <div class="car-card">
                 <div>
-                    <div class="car-image-wrapper">
-                        <img class="car-image" src="CAR2.jpg" alt="هونداي توسان">
+                    <div class="car-slider" id="slider2">
+                        <div class="car-slides">
+                            <img src="CAR2_1.jpg" alt="صورة 1">
+                            <img src="CAR2_2.jpg" alt="صورة 2">
+                            <img src="CAR2_3.jpg" alt="صورة 3">
+                            <img src="CAR2_4.jpg" alt="صورة 4">
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="moveSlide('slider2', -1)">❮</button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('slider2', 1)">❯</button>
+                        <div class="slider-dots">
+                            <span class="dot active" onclick="currentSlide('slider2', 0)"></span>
+                            <span class="dot" onclick="currentSlide('slider2', 1)"></span>
+                            <span class="dot" onclick="currentSlide('slider2', 2)"></span>
+                            <span class="dot" onclick="currentSlide('slider2', 3)"></span>
+                        </div>
                         <span class="car-badge">مستعمل</span>
                     </div>
                     <div class="car-info">
@@ -264,11 +307,25 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
                     <button class="btn-card btn-inquiry" onclick="scrollToInquiry('توسان')">استفسار 📝</button>
                 </div>
             </div>
-            <!-- 3 -->
+
+            <!-- سيارة 3 -->
             <div class="car-card">
                 <div>
-                    <div class="car-image-wrapper">
-                        <img class="car-image" src="CAR3.jpg" alt="هونداي النترا">
+                    <div class="car-slider" id="slider3">
+                        <div class="car-slides">
+                            <img src="CAR3_1.jpg" alt="صورة 1">
+                            <img src="CAR3_2.jpg" alt="صورة 2">
+                            <img src="CAR3_3.jpg" alt="صورة 3">
+                            <img src="CAR3_4.jpg" alt="صورة 4">
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="moveSlide('slider3', -1)">❮</button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('slider3', 1)">❯</button>
+                        <div class="slider-dots">
+                            <span class="dot active" onclick="currentSlide('slider3', 0)"></span>
+                            <span class="dot" onclick="currentSlide('slider3', 1)"></span>
+                            <span class="dot" onclick="currentSlide('slider3', 2)"></span>
+                            <span class="dot" onclick="currentSlide('slider3', 3)"></span>
+                        </div>
                         <span class="car-badge">مستعمل</span>
                     </div>
                     <div class="car-info">
@@ -281,11 +338,25 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
                     <button class="btn-card btn-inquiry" onclick="scrollToInquiry('هونداي النترا')">استفسار 📝</button>
                 </div>
             </div>
-            <!-- 4 -->
+
+            <!-- سيارة 4 -->
             <div class="car-card">
                 <div>
-                    <div class="car-image-wrapper">
-                        <img class="car-image" src="CAR4.jpg" alt="هونداي اكسنت">
+                    <div class="car-slider" id="slider4">
+                        <div class="car-slides">
+                            <img src="CAR4_1.jpg" alt="صورة 1">
+                            <img src="CAR4_2.jpg" alt="صورة 2">
+                            <img src="CAR4_3.jpg" alt="صورة 3">
+                            <img src="CAR4_4.jpg" alt="صورة 4">
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="moveSlide('slider4', -1)">❮</button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('slider4', 1)">❯</button>
+                        <div class="slider-dots">
+                            <span class="dot active" onclick="currentSlide('slider4', 0)"></span>
+                            <span class="dot" onclick="currentSlide('slider4', 1)"></span>
+                            <span class="dot" onclick="currentSlide('slider4', 2)"></span>
+                            <span class="dot" onclick="currentSlide('slider4', 3)"></span>
+                        </div>
                         <span class="car-badge">مستعمل</span>
                     </div>
                     <div class="car-info">
@@ -298,11 +369,25 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
                     <button class="btn-card btn-inquiry" onclick="scrollToInquiry('هونداي اكسنت')">استفسار 📝</button>
                 </div>
             </div>
-            <!-- 5 -->
+
+            <!-- سيارة 5 -->
             <div class="car-card">
                 <div>
-                    <div class="car-image-wrapper">
-                        <img class="car-image" src="CAR5.jpg" alt="تويوتا كامري">
+                    <div class="car-slider" id="slider5">
+                        <div class="car-slides">
+                            <img src="CAR5_1.jpg" alt="صورة 1">
+                            <img src="CAR5_2.jpg" alt="صورة 2">
+                            <img src="CAR5_3.jpg" alt="صورة 3">
+                            <img src="CAR5_4.jpg" alt="صورة 4">
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="moveSlide('slider5', -1)">❮</button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('slider5', 1)">❯</button>
+                        <div class="slider-dots">
+                            <span class="dot active" onclick="currentSlide('slider5', 0)"></span>
+                            <span class="dot" onclick="currentSlide('slider5', 1)"></span>
+                            <span class="dot" onclick="currentSlide('slider5', 2)"></span>
+                            <span class="dot" onclick="currentSlide('slider5', 3)"></span>
+                        </div>
                         <span class="car-badge">مستعمل</span>
                     </div>
                     <div class="car-info">
@@ -315,11 +400,25 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
                     <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا كامري')">استفسار 📝</button>
                 </div>
             </div>
-            <!-- 6 -->
+
+            <!-- سيارة 6 -->
             <div class="car-card">
                 <div>
-                    <div class="car-image-wrapper">
-                        <img class="car-image" src="CAR6.jpg" alt="هوندا اكورد">
+                    <div class="car-slider" id="slider6">
+                        <div class="car-slides">
+                            <img src="CAR6_1.jpg" alt="صورة 1">
+                            <img src="CAR6_2.jpg" alt="صورة 2">
+                            <img src="CAR6_3.jpg" alt="صورة 3">
+                            <img src="CAR6_4.jpg" alt="صورة 4">
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="moveSlide('slider6', -1)">❮</button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('slider6', 1)">❯</button>
+                        <div class="slider-dots">
+                            <span class="dot active" onclick="currentSlide('slider6', 0)"></span>
+                            <span class="dot" onclick="currentSlide('slider6', 1)"></span>
+                            <span class="dot" onclick="currentSlide('slider6', 2)"></span>
+                            <span class="dot" onclick="currentSlide('slider6', 3)"></span>
+                        </div>
                         <span class="car-badge">مستعمل</span>
                     </div>
                     <div class="car-info">
@@ -332,11 +431,25 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
                     <button class="btn-card btn-inquiry" onclick="scrollToInquiry('هوندا اكورد')">استفسار 📝</button>
                 </div>
             </div>
-            <!-- 7 -->
+
+            <!-- سيارة 7 -->
             <div class="car-card">
                 <div>
-                    <div class="car-image-wrapper">
-                        <img class="car-image" src="CAR7.jpg" alt="تويوتا يارس">
+                    <div class="car-slider" id="slider7">
+                        <div class="car-slides">
+                            <img src="CAR7_1.jpg" alt="صورة 1">
+                            <img src="CAR7_2.jpg" alt="صورة 2">
+                            <img src="CAR7_3.jpg" alt="صورة 3">
+                            <img src="CAR7_4.jpg" alt="صورة 4">
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="moveSlide('slider7', -1)">❮</button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('slider7', 1)">❯</button>
+                        <div class="slider-dots">
+                            <span class="dot active" onclick="currentSlide('slider7', 0)"></span>
+                            <span class="dot" onclick="currentSlide('slider7', 1)"></span>
+                            <span class="dot" onclick="currentSlide('slider7', 2)"></span>
+                            <span class="dot" onclick="currentSlide('slider7', 3)"></span>
+                        </div>
                         <span class="car-badge">مستعمل</span>
                     </div>
                     <div class="car-info">
@@ -349,11 +462,25 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
                     <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا يارس')">استفسار 📝</button>
                 </div>
             </div>
-            <!-- 8 -->
+
+            <!-- سيارة 8 -->
             <div class="car-card">
                 <div>
-                    <div class="car-image-wrapper">
-                        <img class="car-image" src="CAR8.jpg" alt="هونداي اكسنت">
+                    <div class="car-slider" id="slider8">
+                        <div class="car-slides">
+                            <img src="CAR8_1.jpg" alt="صورة 1">
+                            <img src="CAR8_2.jpg" alt="صورة 2">
+                            <img src="CAR8_3.jpg" alt="صورة 3">
+                            <img src="CAR8_4.jpg" alt="صورة 4">
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="moveSlide('slider8', -1)">❮</button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('slider8', 1)">❯</button>
+                        <div class="slider-dots">
+                            <span class="dot active" onclick="currentSlide('slider8', 0)"></span>
+                            <span class="dot" onclick="currentSlide('slider8', 1)"></span>
+                            <span class="dot" onclick="currentSlide('slider8', 2)"></span>
+                            <span class="dot" onclick="currentSlide('slider8', 3)"></span>
+                        </div>
                         <span class="car-badge">مستعمل</span>
                     </div>
                     <div class="car-info">
@@ -366,12 +493,26 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
                     <button class="btn-card btn-inquiry" onclick="scrollToInquiry('هونداي اكسنت')">استفسار 📝</button>
                 </div>
             </div>
-            <!-- 9 -->
+
+            <!-- سيارة 9 -->
             <div class="car-card">
                 <div>
-                    <div class="car-image-wrapper">
-                        <img class="car-image" src="CAR9.jpg" alt="تويوتا كامري">
-                        <span class="car-badge">مباع</span>
+                    <div class="car-slider" id="slider9">
+                        <div class="car-slides">
+                            <img src="CAR9_1.jpg" alt="صورة 1">
+                            <img src="CAR9_2.jpg" alt="صورة 2">
+                            <img src="CAR9_3.jpg" alt="صورة 3">
+                            <img src="CAR9_4.jpg" alt="صورة 4">
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="moveSlide('slider9', -1)">❮</button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('slider9', 1)">❯</button>
+                        <div class="slider-dots">
+                            <span class="dot active" onclick="currentSlide('slider9', 0)"></span>
+                            <span class="dot" onclick="currentSlide('slider9', 1)"></span>
+                            <span class="dot" onclick="currentSlide('slider9', 2)"></span>
+                            <span class="dot" onclick="currentSlide('slider9', 3)"></span>
+                        </div>
+                        <span class="car-badge">مستعمل</span>
                     </div>
                     <div class="car-info">
                         <div class="car-year">موديل 2016</div>
@@ -383,11 +524,25 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
                     <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا كامري')">استفسار 📝</button>
                 </div>
             </div>
-            <!-- 10 -->
+
+            <!-- سيارة 10 -->
             <div class="car-card">
                 <div>
-                    <div class="car-image-wrapper">
-                        <img class="car-image" src="CAR10.jpg" alt="هونداي اكسنت">
+                    <div class="car-slider" id="slider10">
+                        <div class="car-slides">
+                            <img src="CAR10_1.jpg" alt="صورة 1">
+                            <img src="CAR10_2.jpg" alt="صورة 2">
+                            <img src="CAR10_3.jpg" alt="صورة 3">
+                            <img src="CAR10_4.jpg" alt="صورة 4">
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="moveSlide('slider10', -1)">❮</button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('slider10', 1)">❯</button>
+                        <div class="slider-dots">
+                            <span class="dot active" onclick="currentSlide('slider10', 0)"></span>
+                            <span class="dot" onclick="currentSlide('slider10', 1)"></span>
+                            <span class="dot" onclick="currentSlide('slider10', 2)"></span>
+                            <span class="dot" onclick="currentSlide('slider10', 3)"></span>
+                        </div>
                         <span class="car-badge">مستعمل</span>
                     </div>
                     <div class="car-info">
@@ -400,11 +555,25 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
                     <button class="btn-card btn-inquiry" onclick="scrollToInquiry('هونداي اكسنت')">استفسار 📝</button>
                 </div>
             </div>
-            <!-- 11 -->
+
+            <!-- سيارة 11 -->
             <div class="car-card">
                 <div>
-                    <div class="car-image-wrapper">
-                        <img class="car-image" src="CAR11.jpg" alt="تويوتا كامري">
+                    <div class="car-slider" id="slider11">
+                        <div class="car-slides">
+                            <img src="CAR11_1.jpg" alt="صورة 1">
+                            <img src="CAR11_2.jpg" alt="صورة 2">
+                            <img src="CAR11_3.jpg" alt="صورة 3">
+                            <img src="CAR11_4.jpg" alt="صورة 4">
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="moveSlide('slider11', -1)">❮</button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('slider11', 1)">❯</button>
+                        <div class="slider-dots">
+                            <span class="dot active" onclick="currentSlide('slider11', 0)"></span>
+                            <span class="dot" onclick="currentSlide('slider11', 1)"></span>
+                            <span class="dot" onclick="currentSlide('slider11', 2)"></span>
+                            <span class="dot" onclick="currentSlide('slider11', 3)"></span>
+                        </div>
                         <span class="car-badge">مستعمل</span>
                     </div>
                     <div class="car-info">
@@ -417,20 +586,34 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
                     <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا كامري')">استفسار 📝</button>
                 </div>
             </div>
-            <!-- 12 -->
+
+            <!-- سيارة 12 -->
             <div class="car-card">
                 <div>
-                    <div class="car-image-wrapper">
-                        <img class="car-image" src="CAR12.jpg" alt="سيارة 12">
+                    <div class="car-slider" id="slider12">
+                        <div class="car-slides">
+                            <img src="CAR12_1.jpg" alt="صورة 1">
+                            <img src="CAR12_2.jpg" alt="صورة 2">
+                            <img src="CAR12_3.jpg" alt="صورة 3">
+                            <img src="CAR12_4.jpg" alt="صورة 4">
+                        </div>
+                        <button class="slider-btn prev-btn" onclick="moveSlide('slider12', -1)">❮</button>
+                        <button class="slider-btn next-btn" onclick="moveSlide('slider12', 1)">❯</button>
+                        <div class="slider-dots">
+                            <span class="dot active" onclick="currentSlide('slider12', 0)"></span>
+                            <span class="dot" onclick="currentSlide('slider12', 1)"></span>
+                            <span class="dot" onclick="currentSlide('slider12', 2)"></span>
+                            <span class="dot" onclick="currentSlide('slider12', 3)"></span>
+                        </div>
                         <span class="car-badge">مستعمل</span>
                     </div>
                     <div class="car-info">
                         <div class="car-year">موديل 2023</div>
-                        <div class="car-title">تويوتا يارس </div>
+                        <div class="car-title">تويوتا يارس</div>
                     </div>
                 </div>
                 <div class="button-group">
-                    <button class="btn-card btn-whatsapp" onclick="openWhatsApp('2023تويوتا يارس ')">تواصل 💬</button>
+                    <button class="btn-card btn-whatsapp" onclick="openWhatsApp('2023تويوتا يارس')">تواصل 💬</button>
                     <button class="btn-card btn-inquiry" onclick="scrollToInquiry('تويوتا يارس')">استفسار 📝</button>
                 </div>
             </div>
@@ -524,6 +707,47 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
             });
         }
 
+        // كود تشغيل وتحريك السلايدر (المعرض) لكل سيارة
+        const slideIndexes = {};
+
+        function moveSlide(sliderId, n) {
+            const slider = document.getElementById(sliderId);
+            if (!slideIndexes[sliderId]) slideIndexes[sliderId] = 0;
+            
+            const slides = slider.querySelectorAll('.car-slides img');
+            const dots = slider.querySelectorAll('.dot');
+            
+            slideIndexes[sliderId] += n;
+            
+            if (slideIndexes[sliderId] >= slides.length) {
+                slideIndexes[sliderId] = 0;
+            }
+            if (slideIndexes[sliderId] < 0) {
+                slideIndexes[sliderId] = slides.length - 1;
+            }
+            
+            updateSlider(slider, slides, dots, slideIndexes[sliderId]);
+        }
+
+        function currentSlide(sliderId, n) {
+            const slider = document.getElementById(sliderId);
+            slideIndexes[sliderId] = n;
+            
+            const slides = slider.querySelectorAll('.car-slides img');
+            const dots = slider.querySelectorAll('.dot');
+            
+            updateSlider(slider, slides, dots, slideIndexes[sliderId]);
+        }
+
+        function updateSlider(slider, slides, dots, index) {
+            const slidesContainer = slider.querySelector('.car-slides');
+            slidesContainer.style.transform = `translateX(${index * 100}%)`;
+            
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === index);
+            });
+        }
+
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
@@ -550,6 +774,9 @@ footer{text-align:center;padding:35px;color:#71808e;background:#fff;border-top:1
             });
         }, observerOptions);
 
+        document.querySelectorAll('.car-card, .contact-box, .contact-form-section, .reveal-element').carCard?.forEach?.(el => {
+            observer.observe(el);
+        });
         document.querySelectorAll('.car-card, .contact-box, .contact-form-section, .reveal-element').forEach(el => {
             observer.observe(el);
         });
